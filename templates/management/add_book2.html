@@ -1,0 +1,402 @@
+{#{% extends "management/base.html" %}#}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+                {% if state == 'success' %}
+                    <div class="well">
+                        <h2 class="text-success text">添加成功</h2>
+                    </div>
+                {% endif %}
+                <form method="POST" role="form" class="form-horizontal">
+                    {% csrf_token %}
+                    <h1 class="form-signin-heading text-left">资料修改</h1>
+
+
+                   <script language="JavaScript">
+                        function selectKind(the){
+                             var obj = the; var container = document.getElementById("kind_" + obj.name);
+                            var container1 = document.getElementById("k_" + obj.name);
+                             for(var i=0;i<container.getElementsByTagName("input").length;i++)
+                             {
+
+
+
+                                     container.getElementsByTagName("input")[i].disabled = true;
+
+
+
+                             }
+                              for(var i=0;i<container1.getElementsByTagName("input").length;i++)
+                             {
+
+
+
+                                     container1.getElementsByTagName("input")[i].disabled = false;
+
+
+
+                             }
+                        } //-->
+                         function selectType(the){
+                             var obj = the; var container = document.getElementById("kind_" + obj.name);
+                             var container1 = document.getElementById("k_" + obj.name);
+                             for(var i=0;i<container.getElementsByTagName("input").length;i++)
+                             {
+
+
+
+                                     container.getElementsByTagName("input")[i].disabled = false;
+
+
+
+                             }
+                              for(var i=0;i<container1.getElementsByTagName("input").length;i++)
+                             {
+
+
+
+                                     container1.getElementsByTagName("input")[i].disabled = true;
+
+
+
+                             }
+                        } //-->
+
+
+                    </script>
+
+
+
+
+
+
+                    <h2>血管再开通治疗</h2>
+                    <div class="form-group">
+                        <label  for="id_b1" class="col-md-3 control-label">是否为醒后卒中：</label>
+                        <div class="col-md-9" id="id_b1" >
+                        <label><input type="radio" name="b1" value="0" > 是 </label>
+                        <label><input type="radio" name="b1" value="1" > 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="kind_b1">
+                        <label for="id_b2" class="col-md-3 control-label">发病时间：</label>
+                        <div class="col-md-9">
+                            <input type="datetime-local"  class="form-group" required name="b2" id="id_b2">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label  for="id_b3" class="col-md-3 control-label">由何种途径转运至医院：</label>
+                        <div class="col-md-9">
+                        <select class="form-group" id="id_b3" required name="b3">
+                            <option>急救车</option>
+                            <option>私家车</option>
+                            <option>出租车</option>
+                            <option>其他</option>
+                            <option>不详 </option>
+                        </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="id_b4" class="col-md-3 control-label">到院时间：</label>
+                        <div class="col-md-9">
+                            <input type="datetime-local"  class="form-group" required name="b4" id="id_b4">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                    <label for="id_b5" class="col-md-3 control-label">入院诊断：</label>
+                      <div class="col-md-9" id="id_b5"  >
+                        <label><input type="checkbox" name="b5" value="0">脑梗死</label>
+                        <label><input type="checkbox" name="b5" value="1">TIA</label>
+                        <label><input type="checkbox" name="b5" value="2">脑出血</label>
+                        <label><input type="checkbox" name="b5" value="3">蛛网膜下腔出血</label>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                    <label for="id_b51" class="col-md-3 control-label">确诊依据：</label>
+                      <div class="col-md-9" id="id_b51"  >
+                        <label><input type="checkbox" name="b51" value="0">CT </label>
+                        <label><input type="checkbox" name="b51" value="1">MRI</label>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label  for="id_b5a11" class="col-md-3 control-label">如果是脑梗死，是否行静脉溶栓治疗：</label>
+                        <div class="col-md-9" id="id_b5a11"  >
+                        <label><input type="radio" name="b5a11" value="0" onclick="selectType(this)" > 是 </label>
+                        <label><input type="radio" name="b5a11" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div id="kind_b5a11">
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a12" class="col-md-3 control-label">如果“是”，则溶栓开始时间为：</label>
+                        <div class="col-md-9" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="datetime-local" value="2000-01-01T00:00" class="form-group"  name="b5a12" id="id_b5a12">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_b5a13" class="col-md-3 control-label">溶栓地点：</label>
+                        <div class="col-md-9" id="id_b5a13" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="b5a13" value="0" > 急诊 </label>
+                        <label><input type="radio" name="b5a13" value="1"> 科室 </label>
+
+                            <input type="text" class="form-group" id="id_b5a14"  name="b5a14" >
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_b5a15" class="col-md-3 control-label">所用药物为：</label>
+                        <div class="col-md-9" id="id_b5a15" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="b5a15" value="0" >  rt-PA用量(mg) </label>
+                            <input type="number" step="0.01" value="0.00" class="form-group" id="id_b5a16"  name="b5a16" maxlength="6" >
+
+                        <label><input type="radio" name="b5a15" value="1"> 尿激酶用量(mg) </label>
+                            <input type="number" step="0.01" value="0.00" class="form-group" id="id_b5a17"  name="b5a17" maxlength="6">
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a18" class="col-md-3 control-label">溶栓前NHISS评分：</label>
+
+                            <input type="number" value="0" class="form-group" id="id_b5a18"  name="b5a18" maxlength="2" autofocus>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a19" class="col-md-3 control-label">溶栓后NHISS评分：</label>
+
+                            <input type="number" value="0" class="form-group" id="id_b5a19"  name="b5a19" maxlength="2" autofocus>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_b5a110" class="col-md-3 control-label">是否有并发症：</label>
+                        <div class="col-md-9" id="id_b5a110">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="b5a110" onclick="selectKind(this)" value="1" > 否 </label>
+                            <label><input type="radio" name="b5a110" value="0" onclick="selectType(this)" > 是 </label>
+                        </div>
+                        <div id="kind_b5a110">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_b5a111"  name="b5a111" >
+
+                        </div>
+                    </div>
+                    </div>
+
+
+                    <div class="form-group" id="k_b5a11">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="id_b5a112" class="col-md-3 control-label">如果选“否”，则原因为：</label>
+                      <div class="col-md-9" id="id_b5a112"  >
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" value="0" name="b5a112" >超过溶栓时间窗</label>
+                        <label><input type="checkbox" value="1" name="b5a112" >存在禁忌症</label>
+                         <input type="text" class="form-group" id="id_b5a113"  name="b5a113" > <br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" value="2" name="b5a112">医生未告知</label>
+                        <label><input type="checkbox" value="3" name="b5a112">患者及家属不同意</label>
+                        <label><input type="checkbox" value="2" name="b5a112">已在外院行静脉溶栓治疗</label>
+                        <label><input type="checkbox" value="3" name="b5a112">不详</label>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label  for="id_b5a21" class="col-md-3 control-label">患者是否行动脉溶栓治疗？</label>
+                        <div class="col-md-9" id="id_b5a21">
+                            <label><input type="radio" name="b5a21" value="0" onclick="selectType(this)" > 是 </label>
+                            <label><input type="radio" name="b5a21" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div id="kind_b5a21">
+                    <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a22" class="col-md-3 control-label">如果“是”，则溶栓开始时间为：</label>
+                        <div class="col-md-9">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="time" value="00:00" class="form-group"  name="b5a22" id="id_b5a22">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_b5a23" class="col-md-3 control-label">所用药物为：</label>
+                        <div class="col-md-9" id="id_b5a23">
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="b5a23" value="0" >  rt-PA用量(mg) </label>
+                            <input type="number" step="0.01" value="0.00" class="form-group" id="id_b5a24"  name="b5a24" maxlength="6">
+
+                        <label><input type="radio" name="b5a23" value="1"> 尿激酶用量(mg) </label>
+                            <input type="number" step="0.01" value="0.00" class="form-group" id="id_b5a25"  name="b5a25" maxlength="6">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a26" class="col-md-3 control-label">溶栓后NHISS评分：</label>
+
+                            <input type="number" value="0" class="form-group" id="id_b5a26"  name="b5a26" maxlength="2" autofocus>
+
+                    </div>
+
+                     <div class="form-group">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_b5a21" class="col-md-3 control-label">如果“是”，则动脉是否再通？</label>
+                        <div class="col-md-9" id="id_b5a27">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="b5a27" value="0" onclick="selectType(this)" > 是 </label>
+                            <label><input type="radio" name="b5a27" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="kind_b5a27">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a28" class="col-md-3 control-label">若选择“是”，则动脉再通时间为：</label>
+                        <div class="col-md-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="time" value="00:00" class="form-group"  name="b5a28" id="id_b5a28">
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  for="id_b5a31" class="col-md-3 control-label">患者是否行机械取栓治疗？</label>
+                        <div class="col-md-9" id="id_b5a31">
+                            <label><input type="radio" name="b5a31" value="0" onclick="selectType(this)"> 是 </label>
+                            <label><input type="radio" name="b5a31" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div id="kind_b5a31">
+                    <div class="form-group">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a32" class="col-md-3 control-label">如果“是”，则机械取栓开始时间为：</label>
+                        <div class="col-md-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="time" value="00:00" class="form-group"  name="b5a32" id="id_b5a32">
+                        </div>
+                    </div>
+
+                    <div class="form-group">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a33" class="col-md-3 control-label">取栓后NHISS评分：</label>
+
+                            <input type="number" value="0" class="form-group" id="id_b5a33"  name="b5a33" maxlength="2" autofocus>
+
+                    </div>
+
+
+                    <div class="form-group">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_b5a34" class="col-md-3 control-label">如果“是”，则动脉是否再通？</label>
+                        <div class="col-md-9" id="id_b5a34">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="b5a34" value="0" onclick="selectType(this)" > 是 </label>
+                            <label><input type="radio" name="b5a34" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="kind_b5a34">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a35" class="col-md-3 control-label">若选择“是”，则动脉再通时间为：</label>
+                        <div class="col-md-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="time" value="00:00" class="form-group"  name="b5a35" id="id_b5a35">
+                        </div>
+                    </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label  for="id_b5a41" class="col-md-3 control-label">患者是否行急诊支架治疗？</label>
+                        <div class="col-md-9" id="id_b5a41">
+                            <label><input type="radio" name="b5a41" value="0" onclick="selectType(this)" > 是 </label>
+                            <label><input type="radio" name="b5a41" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div id="kind_b5a41">
+                    <div class="form-group">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a42" class="col-md-3 control-label">如果“是”，则支架开始时间为：</label>
+                        <div class="col-md-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="time" value="00:00" class="form-group"  name="b5a42" id="id_b5a42">
+                        </div>
+                    </div>
+
+                    <div class="form-group">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_b5a43" class="col-md-3 control-label">急诊支架后NHISS评分：</label>
+
+                            <input type="number" value="0" class="form-group" id="id_b5a43"  name="b5a43" maxlength="2" autofocus>
+
+                    </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-4 col-md-offset-4">
+                            <button class="btn btn btn-primary btn-block" type="submit">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

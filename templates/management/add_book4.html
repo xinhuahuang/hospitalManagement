@@ -1,0 +1,1386 @@
+<!--{% extends "management/base.html" %}-->
+{% load staticfiles %}
+{% block title %}添加图书{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+                {% if state == 'success' %}
+                    <div class="well">
+                        <h2 class="text-success text">添加成功</h2>
+                    </div>
+                {% endif %}
+                <form method="POST" role="form" class="form-horizontal">
+                    {% csrf_token %}
+                    <h1 class="form-signin-heading text-left">资料修改</h1>
+
+
+
+                <script language="JavaScript">
+                        function selectKind(the){
+                             var obj = the; var container = document.getElementById("kind_" + obj.name);
+                             for(var i=0;i<container.getElementsByTagName("input").length;i++)
+                             {
+
+
+
+                                     container.getElementsByTagName("input")[i].disabled = true;
+
+
+
+                             }
+                        } //-->
+                         function selectType(the){
+                             var obj = the; var container = document.getElementById("kind_" + obj.name);
+                             for(var i=0;i<container.getElementsByTagName("input").length;i++)
+                             {
+
+
+
+                                     container.getElementsByTagName("input")[i].disabled = false;
+
+
+
+                             }
+                        } //-->
+                    </script>
+
+
+
+<!--todo hhs 0918。
+      <div class="form-group">
+               <label for="id_name" class="col-md-3 control-label">省：</label>
+                <div class="col-md-9">
+                    <select class="form-control" name="province" id="province">
+                        <option>==请选择===</option>
+                    </select>
+                </div>
+      </div>
+
+
+       <div class="form-group">
+           <label for="id_name" class="col-md-3 control-label">市：</label>
+                <div class="col-md-9">
+                    <select class="form-control" name="city" id="city">
+                        <option>==请选择===</option>
+                    </select>
+                </div>
+       </div>
+
+
+         <div class="form-group">
+             <label for="id_name" class="col-md-3 control-label"> 县/区：</label>
+                <div class="col-md-9">
+                    <select class="form-control" name="area" id="area" >
+                        <option>==请选择===</option>
+                    </select>
+                </div>
+          </div>
+
+
+todo hhs 0918。-->
+                    <h2>入院后治疗</h2>
+                    <h3>1.缺血性脑卒中</h3>
+
+                    <div class="form-group">
+                        <label  for="id_d1a10" class="col-md-3 control-label">1.1抗血小板聚集药物：</label>
+                        <div class="col-md-9" id="id_d1a10">
+                        <label><input type="radio" name="d1a10" value="0" onclick="selectType(this)" > 是 </label>
+                        <label><input type="radio" name="d1a10" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+                    <div id="kind_d1a10">
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_d1a11" class="col-md-3 control-label"> 如果“是”，则为：</label>
+                        <div class="col-md-9" id="id_d1a11">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a11" value="0" > 单抗 </label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d1a12" class="col-md-3 control-label">阿司匹林剂量(mg/天)：</label>
+                            <input type="number" value="0" class="form-group" id="id_d1a12"  name="d1a12" maxlength="3">
+                            <label for="id_d1a13" class="col-md-3 control-label">氯吡格雷剂量(mg/天)：</label>
+                            <input type="number" value="0" class="form-group" id="id_d1a13"  name="d1a13" maxlength="3">
+                            <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a11" value="1"> 双抗 </label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d1a14" class="col-md-3 control-label">阿司匹林剂量(mg/天)：</label>
+                            <input type="number" value="0" class="form-group" id="id_d1a14"  name="d1a14" maxlength="3">
+                            <label for="id_d1a15" class="col-md-3 control-label">氯吡格雷剂量(mg/天)：</label>
+                            <input type="number" value="0" class="form-group" id="id_d1a15"  name="d1a15" maxlength="3">
+
+
+                        </div>
+                    </div>
+                    </div>
+
+
+                     <div class="form-group">
+                        <label  for="id_d1a20" class="col-md-3 control-label">1.2.抗凝药物：</label>
+                        <div class="col-md-9" id="id_d1a20">
+                        <label><input type="radio" name="d1a20" value="0" onclick="selectType(this)" > 是 </label>
+                        <label><input type="radio" name="d1a20" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div id="kind_d1a20">
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_d1a21" class="col-md-3 control-label">如果“是”，则为：药物</label>
+                        <div class="col-md-9" id="id_d1a21">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="0" > 华法林 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="1"> 低分子肝素 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="2" > 普通肝素 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="3"> 利伐沙班 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="4" > 阿哌沙班 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="5"> 达比加群酯 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="6"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a23"  name="d1a23" >
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="id_d1a22" class="col-md-3 control-label">剂量(mg/天或iu)：</label>
+                        <div class="col-md-9">
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a22"  name="d1a22" >
+                        </div>
+                    </div>
+                        </div>
+
+
+                    <div class="form-group">
+                        <label  for="id_d1a30" class="col-md-3 control-label">1.3.调节血脂药物：</label>
+                        <div class="col-md-9" id="id_d1a30">
+                        <label><input type="radio" name="d1a30" value="0" onclick="selectType(this)"> 是 </label>
+                        <label><input type="radio" name="d1a30" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                        <div id="kind_d1a30">
+                     <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="id_d1a31" class="col-md-3 control-label">如果“是”，则为：药物</label>
+                      <div class="col-md-9" id="id_d1a31"  >
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label><input type="checkbox" name="d1a31" value="0">他汀类：</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;
+                          <label for="id_d1a34" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a34"  name="d1a34" >
+                          <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="0" > 辛伐他汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="1"> 阿托伐他汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="2" > 普伐他汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="3"> 瑞舒伐他汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="4" > 洛伐他汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="5"> 匹伐他汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="6"> 氟伐他汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a21" value="7"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a33"  name="d1a33" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a31" value="1">贝特类：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;
+                          <label for="id_d1a37" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a37"  name="d1a37" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a35" value="0" > 非诺贝特 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a35" value="1"> 吉非贝齐 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a35" value="2" > 氯贝丁酯 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a35" value="3"> 苯扎贝特 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a35" value="4"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a36"  name="d1a36" >
+                          <br/>
+
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a31" value="2">脂质抗氧化剂：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a310" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a310"  name="d1a310" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a38" value="0" > 普罗布考 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a38" value="1"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a39"  name="d1a39" >
+                          <br/>
+
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a31" value="3">烟酸类：</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;
+                          <label for="id_d1a313" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a313"  name="d1a313" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a311" value="0" > 依折麦布 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a311" value="1"> 阿西莫司 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a311" value="4"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a312"  name="d1a312" >
+                          <br/>
+
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a31" value="4">胆酸螯合剂：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a316" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a316"  name="d1a310" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a314" value="0" > 考来烯胺 </label><br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a314" value="0" > 考来替泊 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a314" value="1"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a315"  name="d1a315" >
+                          <br/>
+
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a31" value="5">其他</label>
+                         <input type="text" class="form-group" id="id_d1a317"  name="d1a317" >
+                          <label for="id_d1a318" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a318"  name="d1a318" >
+
+                      </div>
+                    </div>
+                            </div>
+
+
+                    <div class="form-group">
+                        <label  for="id_d1a40" class="col-md-3 control-label">1.4.控制血压药物：</label>
+                        <div class="col-md-9" id="id_d1a40">
+                        <label><input type="radio" name="d1a40" value="0" onclick="selectType(this)"> 是 </label>
+                        <label><input type="radio" name="d1a40" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div id="kind_d1a40">
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_d1a41" class="col-md-3 control-label">如果“是”，则为：药物</label>
+                        <div class="col-md-9" id="id_d1a41">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a41" value="0">钙离子拮抗剂CCB</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a42" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a42"  name="d1a42" >
+                            <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox"  name="d1a41" value="1">血管紧张素转换酶抑制剂ACEI</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d1a43" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a43"  name="d1a43" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox"  name="d1a41" value="2">血管紧张素Ⅱ受体拮抗剂ARB</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d1a44" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a44"  name="d1a44" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox"  name="d1a41" value="3">利尿剂</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d1a45" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a45"  name="d1a45" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox"  name="d1a41" value="4">β受体阻滞剂</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d1a46" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6"class="form-group" id="id_d1a46"  name="d1a46" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox"  name="d1a41" value="5">α受体阻滞剂</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d1a47" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a47"  name="d1a47" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox"  value="6">其他</label>
+                        <input type="text" class="form-group" id="id_d1a48"  name="d1a48" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;
+
+                            <label for="id_d1a49" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a49"  name="d1a49" >
+
+                        </div>
+                    </div>
+                        </div>
+
+
+                    <div class="form-group">
+                        <label   class="col-md-3 control-label">1.5.其他</label>
+                        <div class="col-md-9" >
+                        <label   class="col-md-3 control-label">中药：药物</label>
+                         <div class="col-md-9">
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d1a51"  name="d1a51" >
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                             <label for="id_d1a56" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a56"  name="d1a56" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d1a52"  name="d1a52" >
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d1a57" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a57"  name="d1a57" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d1a53"  name="d1a53" >
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d1a58" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a58"  name="d1a58" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d1a54"  name="d1a54" >
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d1a59" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a59"  name="d1a59" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d1a55"  name="d1a55" >
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d1a510" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a510"  name="d1a510" >
+                        </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-9" >
+                        <label   class="col-md-3 control-label">脑保护：药物</label>
+                         <div class="col-md-9">
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d1a511"  name="d1a511" >
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                             <label for="id_d1a513" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a513"  name="d1a513" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d1a512"  name="d1a512" >
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d1a514" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a514"  name="d1a514" >
+                        </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                    <label for="id_d1a515" class="col-md-3 control-label">脱水：药物</label>
+                      <div class="col-md-9" id="id_d1a515"  >
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a515" value="0">甘露醇</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <label for="id_d1a516" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a516"  name="d1a516" >
+                      <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a515" value="1">甘油果糖</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a517" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a517"  name="d1a517" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a515" value="2">白蛋白</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a518" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a518"  name="d1a518" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a515" value="3">七叶皂苷钠</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a519" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a519"  name="d1a519" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a515" value="4">其他</label>
+
+                          <input type="text" class="form-group" id="id_d1a520"  name="d1a520" >
+                          &nbsp;&nbsp;
+                          <label for="id_d1a521" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a521"  name="d1a521" >
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                    <label for="id_d1a522" class="col-md-3 control-label">扩容：药物</label>
+                      <div class="col-md-9" id="id_d1a522"  >
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a522" value="0">羟乙基淀粉注射液</label>
+                            &nbsp;&nbsp;
+                         <label for="id_d1a523" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a523"  name="d1a523" placeholder="数字形式0000.00" >
+                      <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a522" value="1">低分子右旋糖苷</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a524" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a524"  name="d1a524" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a522" value="2">白蛋白</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d1a525" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a525"  name="d1a525" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a522" value="3">血浆</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a526" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a526"  name="d1a526" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label><input type="checkbox" name="d1a522" value="4">多种氨基酸</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a527" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a527"  name="d1a527" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label><input type="checkbox" name="d1a522" value="5">琥珀酸凝胶</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a528" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a528"  name="d1a528" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a522" value="6">其他</label>
+
+                          <input type="text" class="form-group" id="id_d1a529"  name="d1a529" >
+                          &nbsp;&nbsp;
+                          <label for="id_d1a530" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a530"  name="d1a530" >
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="id_d1a531" class="col-md-3 control-label">控制血糖：药物</label>
+                      <div class="col-md-9" id="id_d1a531"  >
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a531"  value="0">胰岛素：</label>
+
+
+
+                        <label><input type="checkbox" name="d1a532" value="0">超长效：甘精</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label for="id_d1a533" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a533"  name="d1a533" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a532" value="1">超长效：地特</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d1a534" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a534"  name="d1a534" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a532" value="2">长效：精蛋白</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d1a535" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a535"  name="d1a535" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a532" value="3">中效：低精蛋白锌胰岛素</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a536" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a536"  name="d1a536" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a532" value="4">短效：普通胰岛素</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d1a537" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a537"  name="d1a537" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a532" value="5">短效：正规胰岛素</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d1a538" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a538"  name="d1a538" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a532" value="6">超短效：门冬胰岛素</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a539" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a539"  name="d1a539" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a532" value="7">超短效：赖脯胰岛素</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a540" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a540"  name="d1a540" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a532" value="8">预混：30R</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d1a541" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a541"  name="d1a541" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d1a532" value="9">预混：50R</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a542" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a542"  name="d1a542" >
+                          <br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+                           <label><input type="checkbox" name="d1a532" value="8">其他</label>
+
+                          <input type="text" class="form-group" id="id_d1a543"  name="d1a543" >
+                          &nbsp;
+                          <label for="id_d1a544" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a544"  name="d1a544" >
+
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a531" value="1">双胍类：</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a547" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a547"  name="d1a547" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a545" value="0" > 二甲双胍 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a545" value="1"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a546"  name="d1a546" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a531" value="2">磺酰脲类：</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a550" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a550"  name="d1a550" >
+                          <br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a548" value="0" > 格列本脲 </label><br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a548" value="1" > 格列吡嗪 </label><br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a548" value="2" > 格列喹酮 </label><br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a548" value="3" > 格列齐特 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a548" value="4" > 格列美脲 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a548" value="5"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a549"  name="d1a549" >
+                          <br/>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d1a531" value="3">α葡萄糖苷酶抑制剂：</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a553" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a553"  name="d1a553" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a551" value="0" > 阿卡波糖 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a551" value="1" > 伏格列波糖 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a551" value="2"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a552"  name="d1a552" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label><input type="checkbox" name="d1a531" value="4">噻唑烷二酮类：</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a556" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a556"  name="d1a556" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a554" value="0" > 罗格列酮 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a554" value="1" > 吡格列酮 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a554" value="2"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a555"  name="d1a555" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label><input type="checkbox" name="d1a531" value="5">格列奈类：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a559" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a559"  name="d1a559" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a557" value="0" > 瑞格列奈 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a557" value="1" > 那格列奈 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a557" value="2"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a558"  name="d1a558" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label><input type="checkbox" name="d1a531" value="6">胰高糖素样多肽-1受体激动剂：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a562" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a562"  name="d1a562" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a560" value="0" > 艾塞那肽 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a560" value="1" > 利拉鲁肽 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a560" value="2"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a561"  name="d1a561" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label><input type="checkbox" name="d1a531" value="7">二肽基肽酶-4抑制剂：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d1a565" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a565"  name="d1a565" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a563" value="0" > 西格列汀 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a563" value="1" > 维格列汀 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a563" value="2" > 沙格列汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d1a563" value="3"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d1a564"  name="d1a564" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                        <label><input type="checkbox" name="d1a531" value="8">其他</label>
+
+                          <input type="text" class="form-group" id="id_d1a566"  name="d1a566" >
+                          &nbsp;&nbsp;
+                          <label for="id_d1a567" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a567"  name="d1a567" >
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_d1a6" class="col-md-3 control-label">1.6外科治疗：</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-group" id="id_d1a6" required name="d1a6" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_d1a7" class="col-md-3 control-label">1.7介入治疗：</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-group" id="id_d1a7" required name="d1a7" >
+                        </div>
+                    </div>
+
+                    <h3>2.出血性脑卒中</h3>
+
+                    <div class="form-group">
+                        <label  for="id_d2a10" class="col-md-3 control-label">2.1脱水药物：</label>
+                        <div class="col-md-9" id="id_d2a10">
+                        <label><input type="radio" name="d2a10" value="0" onclick="selectType(this)"> 是 </label>
+                        <label><input type="radio" name="d2a10" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+                    <div id="kind_d2a10">
+                    <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="id_d2a11" class="col-md-3 control-label">如果“是”，则为：药物</label>
+                      <div class="col-md-9" id="id_d2a11"  >
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a11" value="0">甘露醇</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <label for="id_d2a12" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a12"  name="d2a12" >
+                      <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a11" value="1">甘油果糖</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a13" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a13"  name="d2a13" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a11" value="2">白蛋白</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a14" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a14"  name="d2a14" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a11" value="3">七叶皂苷钠</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a15" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a15"  name="d2a15" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a11" value="4">其他</label>
+
+                          <input type="text" class="form-group" id="id_d2a16"  name="d2a16" >
+                          &nbsp;&nbsp;
+                          <label for="id_d2a17" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a17"  name="d2a17" >
+                      </div>
+                    </div>
+                        </div>
+
+
+
+                    <div class="form-group">
+                        <label  for="id_d2a20" class="col-md-3 control-label">2.2控制血压药物：</label>
+                        <div class="col-md-9" id="id_d2a20">
+                        <label><input type="radio" name="d2a20" value="0" onclick="selectType(this)"> 是 </label>
+                        <label><input type="radio" name="d2a20" value="1" onclick="selectKind(this)"> 否 </label>
+
+                        </div>
+                    </div>
+
+
+                    <div id="kind_d2a20">
+                    <div class="form-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label  for="id_d2a21" class="col-md-3 control-label">如果“是”，则为：药物</label>
+                        <div class="col-md-9"  id="id_d2a21" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a21" value="0">钙离子拮抗剂CCB</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a22" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a22"  name="d2a22" >
+                            <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a21" value="1">血管紧张素转换酶抑制剂ACEI</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d2a23" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a23"  name="d2a23" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a21" value="2">血管紧张素Ⅱ受体拮抗剂ARB</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d2a24" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a24"  name="d2a24" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a21" value="3">利尿剂</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d2a25" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a25"  name="d2a25" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a21" value="4">β受体阻滞剂</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d2a26" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a26"  name="d2a26" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a21" value="5">α受体阻滞剂</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="id_d2a27" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a27"  name="d2a27" >
+                             <br/>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a21" value="6">其他</label>
+                        <input type="text" class="form-group" id="id_d2a28"  name="d2a28" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;
+
+                            <label for="id_d2a29" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a29"  name="d2a29" >
+
+                        </div>
+                    </div>
+                        </div>
+
+
+                    <div class="form-group">
+                        <label   class="col-md-3 control-label">2.3其他</label>
+                        <div class="col-md-9" >
+                        <label   class="col-md-3 control-label">中药：药物</label>
+                         <div class="col-md-9">
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d2a31"  name="d2a31" >
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                             <label for="id_d2a36" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a36"  name="d2a36" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d2a32"  name="d2a32" >
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d2a37" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a37"  name="d2a37" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d2a33"  name="d2a33" >
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d2a38" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a38"  name="d2a38" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d2a34"  name="d2a34" >
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d2a39" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a39"  name="d2a39" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d2a35"  name="d2a35" >
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d2a310" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a310"  name="d2a310" >
+                        </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-9" >
+                        <label   class="col-md-3 control-label">脑保护：药物</label>
+                         <div class="col-md-9">
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d2a311"  name="d2a311" >
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                             <label for="id_d2a313" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a313"  name="d1a513" >
+                        </div>
+                            <div class="col-md-9">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="form-group" id="id_d2a312"  name="d2a312" >
+                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label for="id_d2a314" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a314"  name="d2a314" >
+                        </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                    <label for="id_d2a331" class="col-md-3 control-label">控制血糖：药物</label>
+                      <div class="col-md-9" id="id_d2a331"  >
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a331" value="0">胰岛素：</label>
+
+
+
+                        <label><input type="checkbox" name="d2a332" value="0">超长效：甘精</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label for="id_d2a333" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a333"  name="d2a333" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a332" value="1">超长效：地特</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d2a334" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a334"  name="d2a334" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a332" value="2">长效：精蛋白</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d2a335" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a335"  name="d2a335" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a332" value="3">中效：低精蛋白锌胰岛素</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a336" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a336"  name="d2a336" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a332" value="4">短效：普通胰岛素</label>
+                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d2a337" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a337"  name="d2a337" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a332" value="5">短效：正规胰岛素</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d2a338" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a338"  name="d2a338" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a332" value="6">超短效：门冬胰岛素</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a339" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a339"  name="d2a339" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a332" value="7">超短效：赖脯胰岛素</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a340" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a340"  name="d2a340" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a332" value="8">预混：30R</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+
+                          <label for="id_d2a341" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a341"  name="d2a341" >
+
+                          <br/>
+
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+
+                        <label><input type="checkbox" name="d2a332" value="9">预混：50R</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a342" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a342"  name="d2a342" >
+                          <br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+                           <label><input type="checkbox" name="d2a332" value="8">其他</label>
+
+                          <input type="text" class="form-group" id="id_d2a343"  name="d2a343" >
+                          &nbsp;
+                          <label for="id_d2a344" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a344"  name="d2a344" >
+
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a331" value="1">双胍类：</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a347" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a347"  name="d2a347" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a345" value="0" > 二甲双胍 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a345" value="1"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d2a346"  name="d2a346" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a331" value="2">磺酰脲类：</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a350" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a350"  name="d2a350" >
+                          <br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a348" value="0" > 格列本脲 </label><br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a348" value="1" > 格列吡嗪 </label><br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a348" value="2" > 格列喹酮 </label><br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a348" value="3" > 格列齐特 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a348" value="4" > 格列美脲 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a348" value="5"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d2a349"  name="d2a349" >
+                          <br/>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="checkbox" name="d2a331" value="3">α葡萄糖苷酶抑制剂：</label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a353" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a353"  name="d2a353" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a351" value="0" > 阿卡波糖 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a351" value="1" > 伏格列波糖 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a351" value="2"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d2a352"  name="d2a352" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label><input type="checkbox" name="d2a331" value="4">噻唑烷二酮类：</label>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a356" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a356"  name="d2a356" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a354" value="0" > 罗格列酮 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a354" value="1" > 吡格列酮 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a354" value="2"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d2a355"  name="d2a355" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label><input type="checkbox" name="d2a331" value="5">格列奈类：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a359" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a359"  name="d2a359" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a357" value="0" > 瑞格列奈 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a357" value="1" > 那格列奈 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a357" value="2"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d2a358"  name="d2a358" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label><input type="checkbox" name="d2a331" value="6">胰高糖素样多肽-1受体激动剂：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a362" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a362"  name="d2a362" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a360" value="0" > 艾塞那肽 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a360" value="1" > 利拉鲁肽 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a360" value="2"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d2a361"  name="d2a361" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                          <label><input type="checkbox" name="d2a331" value="7">二肽基肽酶-4抑制剂：</label>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <label for="id_d2a365" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a365"  name="d2a365" >
+                          <br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a363" value="0" > 西格列汀 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a363" value="1" > 维格列汀 </label><br/>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a363" value="2" > 沙格列汀 </label><br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="d2a363" value="3"> 其他 </label>
+                        <input type="text" class="form-group" id="id_d2a364"  name="d2a364" >
+                          <br/>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                        <label><input type="checkbox" name="d2a331" value="8">其他</label>
+
+                          <input type="text" class="form-group" id="id_d2a366"  name="d1a566" >
+                          &nbsp;&nbsp;
+                          <label for="id_d2a367" class="col-md-3 control-label">剂量(mg/天)：</label>
+                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a367"  name="d2a367" >
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_d2a4" class="col-md-3 control-label">2.4外科治疗：</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-group" id="id_d2a4" required name="d2a4" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_d2a5" class="col-md-3 control-label">2.5介入治疗：</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-group" id="id_d2a5" required name="d2a5" >
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="col-md-4 col-md-offset-4">
+                            <button class="btn btn btn-primary btn-block" type="submit">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

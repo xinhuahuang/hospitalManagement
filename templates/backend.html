@@ -1,0 +1,460 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/plugins/sweetalert-master/dist/sweetalert.css">
+    <link rel="stylesheet" href="/static/plugins/bootstrap-table-develop/dist/bootstrap-table.min.css">
+{% endblock %}
+
+{% block right_content %}
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-top: 0;padding-right: 0;padding-left: 0">
+        <div class="panel-body" style="padding-bottom:0px;">
+{#            <div class="panel panel-default" style="margin-bottom: 5px">#}
+{#                <div class="panel-heading">查询条件</div>#}
+{#                <div class="panel-body">#}
+{#                    <form id="formSearch" class="form-horizontal">#}
+{#                        <div class="form-group" style="margin-top:15px">#}
+{#                            <label class="control-label col-sm-1" for="txt_search_departmentname">姓名</label>#}
+{#                            <div class="col-sm-3">#}
+{#                                <input type="text" class="form-control" id="txt_search_departmentname">#}
+{#                            </div>#}
+{#                            <label class="control-label col-sm-1" for="txt_search_statu">编号</label>#}
+{#                            <div class="col-sm-3">#}
+{#                                <input type="text" class="form-control" id="txt_search_statu">#}
+{#                            </div>#}
+{#                            <div class="col-sm-4" style="text-align:left;">#}
+{#                                <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+            <div id="toolbar" class="btn-group">
+                <button id="btn_add" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <a href="/new_page/">新增</a>
+                </button>
+                <button id="btn_edit" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                </button>
+                <button id="btn_delete" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+            </div>
+            <table id="table_info"></table>
+        </div>
+    </div>
+
+<!-- 双击预览模态框开始-->
+<div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active"><a href="#A" data-toggle="tab">1.基本信息</a></li>
+                    <li><a href="#B" data-toggle="tab">2.血管再开通治疗</a></li>
+                    <li><a href="#C" data-toggle="tab">3.首次评估及化验检查</a></li>
+                    <li><a href="#D" data-toggle="tab">4.入院后治疗</a></li>
+                    <li><a href="#E" data-toggle="tab">5.危险因素</a></li>
+                    <li><a href="#F" data-toggle="tab">6.住院1周内病情变化</a></li>
+                    <li><a href="#G" data-toggle="tab">7.出院情况</a></li>
+                    <li><a href="#H" data-toggle="tab">8.出院诊断</a></li>
+                    <li><a href="#I" data-toggle="tab">9.住院时间</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="A">
+                        <div class="panel panel-default" style="margin-top: 10px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    基本信息
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">姓名: <span id="name"></span></div>
+                                    <div class="col-md-4">性别: <span id="gender"></span></div>
+                                    <div class="col-md-4">年龄: <span id="age"></span></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-4">住院号: <span id="numble"></span></div>
+                                    <div class="col-md-4">身份证号:<span id="idnumble"></span></div>
+                                    <div class="col-md-4">患者电话:</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-4">联系人姓名:</div>
+                                    <div class="col-md-4">联系人姓名:</div>
+                                    <div class="col-md-4">联系人电话:</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-6">现地址:</div>
+                                    <div class="col-md-6">现住址乡/镇/街道:</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-6">出生地地址:</div>
+                                    <div class="col-md-6">出生地乡/镇/街道:</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-12">医保类型:</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="B">
+                        <div class="panel panel-default" style="margin-top: 10px;overflow: scroll">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">血管再开通治疗</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-4">是否为醒后卒中:</div>
+                                    <div class="col-md-4">发病时间:</div>
+                                    <div class="col-md-4">由何种途径转运至医院:</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-4">到院时间:</div>
+                                    <div class="col-md-4">入院诊断:</div>
+                                    <div class="col-md-4">确诊依据:</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-12">如果是脑梗死，是否行静脉溶栓治疗:</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4">溶栓开始时间:</div>
+                                    <div class="col-md-4">溶栓地点:</div>
+                                    <div class="col-md-4">所用药物为: 尿激酶用量(mg)</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-3">溶栓前NHISS评分:</div>
+                                    <div class="col-md-3">溶栓后NHISS评分:</div>
+                                    <div class="col-md-3">是否有并发症:</div>
+                                    <div class="col-md-3">原因:</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-12">患者是否行动脉溶栓治疗:</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">如果“是”，则溶栓开始时间为:</div>
+                                    <div class="col-md-6">所用药物为:尿激酶用量(mg)</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">溶栓后NHISS评分:</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">如果“是”，则动脉是否再通:</div>
+                                    <div class="col-md-6">若选择“是”，则动脉再通时间为:</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">患者是否行机械取栓治疗: </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">如果“是”，则机械取栓开始时间为:</div>
+                                    <div class="col-md-6">取栓后NHISS评分</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">如果“是”，则动脉是否再通？</div>
+                                    <div class="col-md-6">若选择“是”，则动脉再通时间为</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">患者是否行急诊支架治疗？</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">如果“是”，则支架开始时间为</div>
+                                    <div class="col-md-6">急诊支架后NHISS评分</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="C">
+                        <div class="panel panel-default" style="margin-top: 10px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">首次评估及化验检查</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">意识</div>
+                                    <div class="col-md-6">(若评为昏迷进行评分)Glasgow评分</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-6">体征</div>
+                                    <div class="col-md-6">NIHSS评分：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-4">血糖(mmol/L)：</div>
+                                    <div class="col-md-4">入院后首次血压(mmHg)：</div>
+                                    <div class="col-md-4">血小板(10^9/L)：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-4">白细胞(10^9/L)：</div>
+                                    <div class="col-md-4">红细胞(10^12/L)：</div>
+                                    <div class="col-md-4">血红蛋白(g/L)：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-4">血脂： TG(mmol/L)：</div>
+                                    <div class="col-md-4">谷丙转氨酶(U/L)：</div>
+                                    <div class="col-md-4">谷草转氨酶(U/L)：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-4">尿素氮(mmol/L)：</div>
+                                    <div class="col-md-4">血肌酐(umol/L)：</div>
+                                    <div class="col-md-4">同型半胱氨酸HCY(μmol/L)：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-4">尿素氮(mmol/L)：</div>
+                                    <div class="col-md-4">血肌酐(umol/L)：</div>
+                                    <div class="col-md-4">同型半胱氨酸HCY(μmol/L)：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-4">超敏-C反应蛋白CRP(mg/L)：</div>
+                                    <div class="col-md-4">CK(U/L)：</div>
+                                    <div class="col-md-4">Lp-PLA₂(ng/ml)：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-3">CT：</div>
+                                    <div class="col-md-3">MRI急性期改变：</div>
+                                    <div class="col-md-3">心电监护：有无心房纤颤：</div>
+                                    <div class="col-md-3">如果“有”，则为：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="D">
+                        <div class="panel panel-default" style="margin-top: 10px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    入院后治疗
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12"><strong>1.缺血性脑卒中</strong></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">1.1抗血小板聚集药物：</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">单抗 <span>阿司匹林剂量(mg/天)：</span>&nbsp;氯吡格雷剂量(mg/天)</div>
+                                    <div class="col-md-6">双抗 <span>阿司匹林剂量(mg/天)：</span>&nbsp;氯吡格雷剂量(mg/天)</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">1.2.抗凝药物：</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">如果“是”，则为：药物</div>
+                                    <div class="col-md-6">剂量(mg/天或iu)：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">1.3.调节血脂药物：</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">如果“是”，则为：药物</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">1.4.控制血压药物：：</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">如果“是”，则为：药物</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">1.5.其他</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">中药：药物</div>
+                                    <div class="col-md-6">脑保护：药物</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">脱水：药物</div>
+                                    <div class="col-md-6">扩容：药物</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">控制血糖：药物</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">1.6外科治疗：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">1.7介入治疗：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12"><strong>2.出血性脑卒中</strong></div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">2.1脱水药物：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">2.2控制血压药物：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">2.3其他</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">2.4外科治疗：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="row">
+                                    <div class="col-md-12">2.5介入治疗：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="E">
+                        <div class="panel panel-default" style="margin-top: 10px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    危险因素
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="F">
+                        <div class="panel panel-default" style="margin-top: 10px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    住院1周内病情变化
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="G">
+                        <div class="panel panel-default" style="margin-top: 10px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    出院情况
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="H">
+                        <div class="panel panel-default" style="margin-top: 10px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    出院诊断
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">出院诊断：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="I">
+                        <div class="panel panel-default" style="margin-top: 10px">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    住院时间
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">住院时间（天）：</div>
+                                    <div class="col-md-6">住院期间总花费（元）：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="row">
+                                    <div class="col-md-6">其中药品花费（元）：</div>
+                                    <div class="col-md-6">辅助检查花费（元）：</div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block custom_js %}
+    <script src="/static/plugins/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script src="/static/plugins/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>
+    <script src="/static/plugins/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/static/js/backend.js"></script>
+{% endblock %}

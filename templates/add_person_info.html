@@ -1,0 +1,2579 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/plugins/sweetalert-master/dist/sweetalert.css">
+    <link rel="stylesheet" href="/static/plugins/bootstrap-table-develop/dist/bootstrap-table.min.css">
+{% endblock %}
+
+{% block right_content %}
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+
+                        <form id="form" class="wizard-big form-horizontal">
+                            <h1>添加病人基本信息</h1>
+                            <fieldset>
+                                <h2>基本信息</h2>
+                                <div>
+                                    <div class="col-sm-10">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">姓 名</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="id_name" name="name" placeholder="请输入姓名" maxlength="10" autofocus>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">性 别</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="id_gender" name="gender">
+                                                    <option>男性</option>
+                                                    <option>女性</option>
+                                                    <option>其他</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">年 龄</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" name="age" placeholder="请输入3位有效数字" maxlength="3" id="id_age">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">住院号</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="numble" placeholder="请输入8位有效数字" maxlength="8" id="id_numble">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">身份证号</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="idnumble" placeholder="请输入居民身份证号" maxlength="18" id="id_idnumble">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">患者电话</label>
+                                            <div class="col-sm-9">
+                                                <input type="tel" class="form-control" name="pphone" placeholder="请输入11位有效电话" maxlength="11" id="id_pphone">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">联系人姓名</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="id_conname" placeholder="请输入联系人姓名" maxlength="10" name="conname" autofocus>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">配偶关系</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="id_conrelation" name="conrelation">
+                                                    <option>配偶</option>
+                                                    <option>子</option>
+                                                    <option>女</option>
+                                                    <option>孙子、孙女、或外孙子、外孙女</option>
+                                                    <option>父母</option>
+                                                    <option>祖父母或外祖父母</option>
+                                                    <option>兄、弟、姐、妹</option>
+                                                    <option>其他</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">联系人电话</label>
+                                            <div class="col-sm-9">
+                                                <input type="tel" class="form-control" name="conphone" placeholder="请输入11有效电话" maxlength="11" id="id_conphone">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">现有地址</label>
+                                            <div class="col-sm-9">
+                                                <div class="city-picker-select"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">现住址乡/镇/街道</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" id="id_nowstreet"  name="nowstreet" placeholder="请输入详细地址" maxlength="300" rows="3" autofocus></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">出生地址</label>
+                                            <div class="col-sm-9">
+                                                <div class="city-picker-select-1"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">出生地乡/镇/街道</label>
+                                            <div class="col-sm-9">
+                                                <textarea type="text" class="form-control" id="id_birthstreet"  name="birthstreet" placeholder="请输入详细地址" maxlength="300" autofocus rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">医保类型</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="id_healthtype" required name="healthtype">
+                                                    <option>城镇职工医保</option>
+                                                    <option>城镇居民医保</option>
+                                                    <option>农村合作医疗</option>
+                                                    <option>商业保险</option>
+                                                    <option>公费医疗</option>
+                                                    <option>自费</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <h1>血管再开通治疗</h1>
+                            <fieldset>
+                                <div class="row">
+                                <div class="form-group">
+                                    <label  for="id_b1" class="col-md-3 control-label">是否为醒后卒中：</label>
+                                    <div class="col-md-9" id="id_b1" >
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b1" value="0" > 是
+                                        </label>&nbsp;&nbsp;
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b1" value="1" > 否
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="kind_b1">
+                                    <label for="id_b2" class="col-md-3 control-label">发病时间：</label>
+                                    <div class="col-md-9">
+                                        <input type="datetime-local" required class="form-group" name="b2" id="id_b2">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label  for="id_b3" class="col-md-3 control-label">由何种途径转运至医院：</label>
+                                    <div class="col-md-9">
+                                    <select class="form-group" id="id_b3" name="b3">
+                                        <option>急救车</option>
+                                        <option>私家车</option>
+                                        <option>出租车</option>
+                                        <option>其他</option>
+                                        <option>不详 </option>
+                                    </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="id_b4" class="col-md-3 control-label">到院时间：</label>
+                                    <div class="col-md-9">
+                                        <input type="datetime-local" required class="form-group" name="b4" id="id_b4">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="id_b5" class="col-md-3 control-label">入院诊断：</label>
+                                    <div class="col-md-9" id="id_b5"  >
+                                        <label><input type="checkbox" name="b5" value="0">脑梗死</label>&nbsp;&nbsp;
+                                        <label><input type="checkbox" name="b5" value="1">TIA</label>&nbsp;&nbsp;
+                                        <label><input type="checkbox" name="b5" value="2">脑出血</label>&nbsp;&nbsp;
+                                        <label><input type="checkbox" name="b5" value="3">蛛网膜下腔出血</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                <label for="id_b51" class="col-md-3 control-label">确诊依据：</label>
+                                  <div class="col-md-9" id="id_b51"  >
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="b51" value="0">CT
+                                    </label>&nbsp;&nbsp;
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="b51" value="1">MRI
+                                    </label>
+                                  </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label  for="id_b5a11" class="col-md-3 control-label">如果是脑梗死，是否行静脉溶栓治疗：</label>
+                                    <div class="col-md-9" id="id_b5a11"  >
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a11" value="0" > 是
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a11" value="1" > 否
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div id="kind_b5a11" style="display: none;position: absolute;top:10%;left: 15%;margin: auto;z-index: 999;width: 80%;height: 80%">
+                                    <div class="form-group">
+                                        <label for="id_b5a12" class="col-md-3 control-label">如果“是”，则溶栓开始时间为：</label>
+                                        <div class="col-md-9" >
+                                            <input type="datetime-local" value="2000-01-01T00:00" class="form-group"  name="b5a12" id="id_b5a12">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label  for="id_b5a13" class="col-md-3 control-label">溶栓地点：</label>
+                                        <div class="col-md-9" id="id_b5a13" >
+                                             <label class="radio-inline">
+                                                 <input type="radio" name="b5a13" value="0"> 急诊
+                                             </label>
+                                             <label class="radio-inline">
+                                                 <input type="radio" name="b5a13" value="1"> 科室
+                                             </label>
+                                            <input type="text" class="form-group" id="id_b5a14"  name="b5a14" style="display: inline-block;margin-left: 20px">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label  for="id_b5a15" class="col-md-3 control-label">所用药物为：</label>
+                                        <div class="col-md-9" id="id_b5a15" >
+                                            <label class="radio-inline">
+                                                <input type="radio" name="b5a15" value="0" >  rt-PA用量(mg)
+                                            </label>
+                                            <input type="number" step="0.01" value="0.00" class="form-group" id="id_b5a16"  name="b5a16" maxlength="6" style="display: inline-block;">
+
+                                            <label class="radio-inline" style="padding-left: 50px">
+                                                <input type="radio" name="b5a15" value="1"> 尿激酶用量(mg)
+                                            </label>
+                                            <input type="number" step="0.01" value="0.00" class="form-group" id="id_b5a"  name="b5a17" maxlength="6" style="display: inline-block;">
+
+                                            </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="id_b5a18" class="col-md-3 control-label">溶栓前NHISS评分：</label>
+
+                                            <input type="number" value="0" class="form-group" id="id_b5a18"  name="b5a18" maxlength="2" autofocus>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="id_b5a19" class="col-md-3 control-label">溶栓后NHISS评分：</label>
+
+                                            <input type="number" value="0" class="form-group" id="id_b5a19"  name="b5a19" maxlength="2" autofocus>
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label  for="id_b5a110" class="col-md-3 control-label">是否有并发症：</label>
+                                        <div class="col-md-9" id="id_b5a110">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="b5a110" value="1" > 否
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="b5a110" value="0" > 是
+                                            </label>
+                                            <input type="text" class="form-group" id="id_b5a111"  name="b5a111" style="display: inline-block;margin-left: 20px">
+                                        </div>
+
+                                        <div class="form-group" id="k_b5a11" style="display: none;width: 80%;margin-left:90px;margin-top: 50px;">
+                                            <label for="id_b5a112" class="col-md-3 control-label">如果选“否”，则原因为：</label>
+                                              <div class="col-md-9" id="id_b5a112"  >
+                                                <label class="radio-inline">
+                                                    <input type="checkbox" value="0" name="b5a112" >超过溶栓时间窗
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="checkbox" value="1" name="b5a112" >存在禁忌症
+                                                </label>
+                                                 <input type="text" class="form-group" id="id_b5a113"  name="b5a113" style="display: inline-block;"> <br/>
+
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="2" name="b5a112">医生未告知
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="3" name="b5a112">患者及家属不同意
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="2" name="b5a112">已在外院行静脉溶栓治疗
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="3" name="b5a112">不详
+                                                </label>
+                                              </div>
+                                         </div>
+
+                                    </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px">
+                                        <button type="button" class="btn btn-default" id="close_naogenshi">关闭</button>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <label  for="id_b5a21" class="col-md-3 control-label">患者是否行动脉溶栓治疗？</label>
+                                    <div class="col-md-9" id="id_b5a21">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a21" value="0"> 是
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a21" value="1"> 否
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div id="kind_b5a21" style="display: none;position: absolute;top:10%;left: 15%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        <label for="id_b5a22" class="col-md-3 control-label">如果“是”，则溶栓开始时间为：</label>
+                                        <div class="col-md-9">
+                                            <input type="time" value="00:00" class="form-group"  name="b5a22" id="id_b5a22">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label  for="id_b5a23" class="col-md-3 control-label">所用药物为：</label>
+                                        <div class="col-md-9" id="id_b5a23">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a23" value="0" >  rt-PA用量(mg)
+                                        </label>
+                                            <input type="number" step="0.01" value="0.00" class="form-group" id="id_b5a24"  name="b5a24" maxlength="6" style="display: inline-block">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a23" value="1"> 尿激酶用量(mg)
+                                        </label>
+                                            <input type="number" step="0.01" value="0.00" class="form-group" id="id_b5a25"  name="b5a25" maxlength="6" style="display: inline-block">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="id_b5a26" class="col-md-3 control-label">溶栓后NHISS评分：</label>
+                                        <input type="number" value="0" class="form-group" id="id_b5a26"  name="b5a26" maxlength="2" autofocus style="display: inline-block">
+
+                                    </div>
+
+                                     <div class="form-group">
+                                        <label  for="id_b5a21" class="col-md-3 control-label">如果“是”，则动脉是否再通？</label>
+                                        <div class="col-md-9" id="id_b5a27">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="b5a27" value="0"> 是
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="b5a27" value="1"> 否
+                                            </label>
+
+                                        </div>
+                                         <div class="form-group" id="kind_b5a27" style="display: none;position: absolute;top:50%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 20%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label for="id_b5a28" class="col-md-5 control-label">若选择“是”，则动脉再通时间为：</label>
+                                            <div class="col-md-5">
+                                                <input type="time" value="00:00" class="form-group"  name="b5a28" id="id_b5a28" style="display: inline-block">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_xingdong">关闭</button>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label  for="id_b5a31" class="col-md-3 control-label">患者是否行机械取栓治疗？</label>
+                                    <div class="col-md-9" id="id_b5a31">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a31" value="0"> 是
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a31" value="1"> 否
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div id="kind_b5a31" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 35%">
+                                    <div class="form-group">
+                                        <label for="id_b5a32" class="col-md-3 control-label">如果“是”，则机械取栓开始时间为：</label>
+                                        <div class="col-md-9">
+                                            <input type="time" value="00:00" class="form-group"  name="b5a32" id="id_b5a32">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="id_b5a33" class="col-md-3 control-label">取栓后NHISS评分：</label>
+
+                                        <input type="number" value="0" class="form-group" id="id_b5a33"  name="b5a33" maxlength="2" autofocus style="display: inline-block">
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label  for="id_b5a34" class="col-md-3 control-label">如果“是”，则动脉是否再通？</label>
+                                        <div class="col-md-9" id="id_b5a34">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="b5a34" value="0" > 是
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="b5a34" value="1"> 否
+                                            </label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" id="kind_b5a34" style="display: none;position: absolute;top:40%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                        <label for="id_b5a35" class="col-md-5 control-label">若选择“是”，则动脉再通时间为：</label>
+                                        <div class="col-md-7">
+                                            <input type="time" value="00:00" class="form-group"  name="b5a35" id="id_b5a35">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_jixian">关闭</button>
+                                    </div>
+                                    </div>
+
+
+                                <div class="form-group">
+                                    <label  for="id_b5a41" class="col-md-3 control-label">患者是否行急诊支架治疗？</label>
+                                    <div class="col-md-9" id="id_b5a41">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a41" value="0" > 是
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="b5a41" value="1"> 否
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                    <div id="kind_b5a41" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                        <div class="form-group">
+                                            <label for="id_b5a42" class="col-md-3 control-label">如果“是”，则支架开始时间为：</label>
+                                            <div class="col-md-9">
+                                                <input type="time" value="00:00" class="form-group"  name="b5a42" id="id_b5a42">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="id_b5a43" class="col-md-3 control-label">急诊支架后NHISS评分：</label>
+
+                                                <input type="number" value="0" class="form-group" id="id_b5a43"  name="b5a43" maxlength="2" autofocus style="display: inline-block">
+
+                                        </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_jizheng">关闭</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <h1>首次评估及化验检查</h1>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label  for="id_c1" class="col-md-3 control-label">意识：</label>
+                                    <div class="col-md-9" id="id_c1">
+                                    <label class="radio-inline"><input type="radio" name="c1" value="0">清楚 </label>
+                                    <label class="radio-inline"><input type="radio" name="c1" value="1"> 嗜睡 </label>
+                                    <label class="radio-inline"><input type="radio" name="c1" value="2">昏睡 </label>
+                                    <label class="radio-inline"><input type="radio" name="c1" value="3"> 昏迷 </label>
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group" id="kind_c1" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <label for="id_c1a1" class="col-md-5 control-label">(若评为昏迷进行评分)Glasgow评分：</label>
+                                    <div class="col-md-7">
+                                        <input type="number" value="0" class="form-group" id="id_c1a1"  name="c1a1" maxlength="2" disabled autofocus>
+                                    </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_hunmi">关闭</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                <label for="id_c2" class="col-md-3 control-label">体征：</label>
+                                  <div class="col-md-9" id="id_c2" >
+                                    <label class="checkbox-inline"><input type="checkbox" value="0" name="c2">左利手</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="1" name="c2">右利手</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="2" name="c2">凝视</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="3" name="c2">视野缺损</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="4" name="c2">面瘫</label><br/>
+                                    <label class="checkbox-inline"><input type="checkbox" value="5" name="c2">偏瘫</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="6" name="c2">单瘫</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="7" name="c2">四肢瘫</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="8" name="c2">共济失调</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="9" name="c2">感觉异常</label><br/>
+                                    <label class="checkbox-inline"><input type="checkbox" value="10" name="c2">失语</label>
+                                     <select class="form-group" id="id_c2a1"  name="c2a1" style="display: none">
+                                        <option>运动性</option>
+                                        <option>感觉性</option>
+                                        <option>混合性</option>
+                                    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label class="checkbox-inline"><input type="checkbox" value="11" name="c2">构音障碍</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value="112" name="c2">忽视</label>
+                                  </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="id_c2a2" class="col-md-3 control-label">NIHSS评分：</label>
+                                    <div class="col-md-9">
+                                        <input type="text"  maxlength="2" class="form-group"  id="id_c2a2" name="c2a2" autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="id_c3" class="col-md-3 control-label">血糖(mmol/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="5" class="form-group" id="id_c3" name="c3" autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  for="id_c4a1" class="col-md-3 control-label">入院后首次血压(mmHg)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" maxlength="3" class="form-group" id="id_c4a1" name="c4a1" autofocus style="display: inline-block">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="form-group">/</label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="number" maxlength="3" class="form-group" id="id_c4a2" name="c4a2" autofocus style="display: inline-block">
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c5a1" class="col-md-3 control-label">血小板(10^9/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c5a1" name="c5a1" autofocus>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c5a2" class="col-md-3 control-label">白细胞(10^9/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c5a2" name="c5a2" autofocus>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c5a3" class="col-md-3 control-label">红细胞(10^12/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c5a3" name="c5a3" autofocus>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c5a4" class="col-md-3 control-label">血红蛋白(g/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c5a4" name="c5a4" autofocus>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label  class="col-md-3 control-label">血脂：</label>
+                                </div>
+
+
+                                <div class="form-group" style="margin-left: 10%">
+                                    <label for="id_c6a1" class="col-md-3 control-label">TG(mmol/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c6a1" name="c6a1" autofocus style="display: inline-block">
+                                     </div>
+                                </div>
+
+                                 <div class="form-group" style="margin-left: 10%">
+                                    <label for="id_c6a2" class="col-md-3 control-label">TC(mmmol/L)：</label>
+                                        <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c6a2" name="c6a2" autofocus style="display: inline-block"><br/>
+                                     </div>
+                                </div>
+
+
+
+
+                                <div class="form-group" style="margin-left: 10%">
+                                    <label for="id_c6a3" class="col-md-3 control-label">LDL-C(10^12/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c6a3" name="c6a3" autofocus style="display: inline-block">
+                                     </div>
+                                </div>
+
+                                    <div class="form-group" style="margin-left: 10%">
+                                    <label for="id_c6a4" class="col-md-3 control-label">HDL-C(mmol/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c6a4" name="c6a4" autofocus style="display: inline-block">
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c7a1" class="col-md-3 control-label">谷丙转氨酶(U/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c7a1" name="c7a1" autofocus>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c7a2" class="col-md-3 control-label">谷草转氨酶(U/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c7a2" name="c7a2" autofocus>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c7a3" class="col-md-3 control-label">尿素氮(mmol/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c7a3" name="c7a3" autofocus>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c7a4" class="col-md-3 control-label">血肌酐(umol/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c7a4" name="c7a4" autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="id_c8" class="col-md-3 control-label">同型半胱氨酸HCY(μmol/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c8" name="c8" autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="id_c9" class="col-md-3 control-label">超敏-C反应蛋白CRP(mg/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c9" name="c9" autofocus>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c10" class="col-md-3 control-label">CK(U/L)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c10" name="c10" >
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="id_c15" class="col-md-3 control-label">Lp-PLA₂(ng/ml)：</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" maxlength="6" class="form-group" id="id_c15" name="c15" >
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                <label for="id_c11" class="col-md-3 control-label">CT：</label>
+                                  <div class="col-md-9" id="id_c11" required name="c11">
+                                    <label><input type="checkbox" value="0">未见异常</label>
+                                    <label><input type="checkbox" value="1">出血</label>
+                                    <label><input type="checkbox" value="2">梗死</label>
+                                    <label><input type="checkbox" value="3">其他</label>
+                                  </div>
+                                </div>
+
+
+                                 <div class="form-group">
+                                    <label  for="id_c12a1" class="col-md-3 control-label">MRI急性期改变：</label>
+                                    <div class="col-md-9" id="id_c12a1">
+                                    <label class="radio-inline"><input type="radio" name="c12a1" value="0"> 有 </label>
+                                    <label class="radio-inline"><input type="radio" name="c12a1" value="1"> 无 </label>
+
+                                    </div>
+                                </div>
+
+                                <div id="kind_c12a1" style="display: none;position: absolute;top:70%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 20%">
+                                    <div class="form-group" >
+                                          <label for="id_c12a2" class="col-md-3 control-label">部位：</label>
+                                          <div class="col-md-9" id="id_c12a2"  >
+                                            <label class="checkbox-inline"><input type="checkbox" value="0" name="c12a2">左侧</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="1" name="c12a2">大脑半球</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="2" name="c12a2">放射冠</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="3" name="c12a2">基底节区</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="4" name="c12a2">脑干</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="5" name="c12a2">小脑</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="6" name="c12a2">脑室</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="7" name="c12a2">蛛网膜下腔</label>
+                                              <br/>
+                                            <label class="checkbox-inline"><input type="checkbox" value="8" name="c12a2">右侧</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="9" name="c12a2">大脑半球</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="10" name="c12a2">放射冠</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="11" name="c12a2">基底节区</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="12" name="c12a2">脑干</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="13" name="c12a2">小脑</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="14" name="c12a2">脑室</label>
+                                            <label class="checkbox-inline"><input type="checkbox" value="15" name="c12a2">蛛网膜下腔</label>
+                                          </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                    <label  for="id_c12a3" class="col-md-3 control-label">范围：</label>
+                                    <div class="col-md-9">
+
+                                    <select class="form-group" id="id_c12a3" name="c12a3">
+                                        <option>大</option>
+                                        <option>中</option>
+                                        <option>小</option>
+                                    </select>
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_mrt">关闭</button>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  for="id_c14a1" class="col-md-3 control-label">心电监护：有无心房纤颤：</label>
+                                    <div class="col-md-9" id="id_c14a1">
+                                    <label class="radio-inline"><input type="radio" name="c14a1" value="0" > 有 </label>
+                                    <label class="radio-inline"><input type="radio" name="c14a1" value="1"> 无 </label>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="kind_c14a1" style="display: none;position: absolute;top:70%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 20%">
+                                    <label  for="id_c14a2" class="col-md-3 control-label">如果“有”，则为：</label>
+                                    <div class="col-md-9">
+                                    <select class="form-group" id="id_c14a2" name="c14a2">
+                                        <option>阵发性房颤</option>
+                                        <option>持续性房颤</option>
+                                    </select>
+                                    </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_xindianjianhu">关闭</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <h1>入院后治疗</h1>
+                            <fieldset>
+                            <div>
+                                <h3>1.缺血性脑卒中</h3>
+
+                                <div class="form-group">
+                                    <label  for="id_d1a10" class="col-md-3 control-label">1.1抗血小板聚集药物：</label>
+                                    <div class="col-md-9" id="id_d1a10">
+                                    <label class="radio-inline"><input type="radio" name="d1a10" value="0" > 是 </label>
+                                    <label class="radio-inline"><input type="radio" name="d1a10" value="1" > 否 </label>
+
+                                    </div>
+                                </div>
+                                <div id="kind_d1a10" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        <label  for="id_d1a11" class="col-md-3 control-label"> 如果“是”，则为：</label>
+                                        <div class="col-md-9" id="id_d1a11">
+                                            <label class="radio-inline"><input type="radio" name="d1a11" value="0"  > 单抗 </label>
+                                            <label for="id_d1a12" >阿司匹林剂量(mg/天)：</label>
+                                            <input type="number" value="0" id="id_d1a12"  name="d1a12" maxlength="3" style="display: inline-block;" disabled="false">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label for="id_d1a13" >氯吡格雷剂量(mg/天)：</label>
+                                            <input type="number" value="0" id="id_d1a13"  name="d1a13" maxlength="3" style="display: inline-block" disabled="false">
+
+                                             <br/>
+                                            <label class="radio-inline"><input type="radio" name="d1a11" value="1"> 双抗 </label>
+                                            <label for="id_d1a14">阿司匹林剂量(mg/天)：</label>
+                                            <input type="number" value="0" id="id_d1a14"  name="d1a14" maxlength="3" style="display: inline-block" disabled="false">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label for="id_d1a15" >氯吡格雷剂量(mg/天)：</label>
+                                            <input type="number" value="0" id="id_d1a15"  name="d1a15" maxlength="3" style="display: inline-block" disabled="false">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_kangxuexiaoban">关闭</button>
+                                    </div>
+
+                                </div>
+
+
+                                 <div class="form-group">
+                                    <label  for="id_d1a20" class="col-md-3 control-label">1.2.抗凝药物：</label>
+                                    <div class="col-md-9" id="id_d1a20">
+                                    <label class="radio-inline"><input type="radio" name="d1a20" value="0" > 是 </label>
+                                    <label class="radio-inline"><input type="radio" name="d1a20" value="1" > 否 </label>
+
+                                    </div>
+                                </div>
+
+                                <div id="kind_d1a20" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label  for="id_d1a21" class="col-md-3 control-label">如果“是”，则为：药物</label>
+                                        <div class="col-md-9" id="id_d1a21">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="radio-inline"><input type="radio" name="d1a21" value="0" > 华法林 </label><br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="radio-inline"><input type="radio" name="d1a21" value="1"> 低分子肝素 </label><br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="radio-inline"><input type="radio" name="d1a21" value="2" > 普通肝素 </label><br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="radio-inline"><input type="radio" name="d1a21" value="3"> 利伐沙班 </label><br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="radio-inline"><input type="radio" name="d1a21" value="4" > 阿哌沙班 </label><br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="radio-inline"><input type="radio" name="d1a21" value="5"> 达比加群酯 </label><br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="radio-inline"><input type="radio" name="d1a21" value="6"> 其他 </label>
+                                        <input type="text" class="form-group" id="id_d1a23"  name="d1a23" style="display: inline-block" disabled="false">
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="id_d1a22" class="col-md-3 control-label">剂量(mg/天或iu)：</label>
+                                        <div class="col-md-9">
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a22"  name="d1a22" style="display: inline-block">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_kangningyaowu">关闭</button>
+                                    </div>
+                                    </div>
+
+
+                                <div class="form-group">
+                                    <label  for="id_d1a30" class="col-md-3 control-label">1.3.调节血脂药物：</label>
+                                    <div class="col-md-9" id="id_d1a30">
+                                    <label class="radio-inline"><input type="radio" name="d1a30" value="0" > 是 </label>
+                                    <label class="radio-inline"><input type="radio" name="d1a30" value="1" > 否 </label>
+
+                                    </div>
+                                </div>
+
+                                <div id="kind_d1a30" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 90%">
+                                     <div class="form-group">
+                                         <label for="id_d1a31" class="col-md-3 control-label">如果“是”，则为：药物</label>
+                                     </div>
+
+                                     <div class="form-group">
+                                          <div class="col-md-12" id="id_d1a31"  >
+                                              <label class="checkbox-inline col-md-3" style="margin-left: 200px;"><input type="checkbox" name="d1a31" value="0" style="float: left" >他汀类：</label>
+                                              <label for="id_d1a34" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group col-md-3" id="id_d1a34"  name="d1a34" style="display: inline-block;margin-left: 10px;">
+                                              <br/>
+                                          </div>
+                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a222" value="0" > 辛伐他汀 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a222" value="1"> 阿托伐他汀 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a222" value="2" > 普伐他汀 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a222" value="3"> 瑞舒伐他汀 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a222" value="4" > 洛伐他汀 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a222" value="5"> 匹伐他汀 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a222" value="6"> 氟伐他汀 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a222" value="7"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a33"  name="d1a33" style="display: inline-block" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+
+                                            <label class="checkbox-inline col-md-3" style="margin-left: 200px;"><input type="checkbox" name="d1a31" value="1">贝特类：</label>
+
+                                              <label for="id_d1a37" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a37"  name="d1a37" style="display: inline-block">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a35" value="0" > 非诺贝特 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a35" value="1"> 吉非贝齐 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a35" value="2" > 氯贝丁酯 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a35" value="3"> 苯扎贝特 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a35" value="4"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a36"  name="d1a36" style="display: inline-block" disabled>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="checkbox-inline col-md-3" style="margin-left: 200px;"><input type="checkbox" name="d1a31" value="2">脂质抗氧化剂：</label>
+
+                                            <label for="id_d1a310" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a310"  name="d1a310" style="display: inline-block">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a38" value="0" > 普罗布考 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a38" value="1"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a39"  name="d1a39" style="display: inline-block" disabled>
+                                          </div>
+                                        </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="checkbox-inline col-md-3" style="margin-left: 200px;"><input type="checkbox" name="d1a31" value="3">烟酸类：</label>
+
+                                            <label for="id_d1a313" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a313"  name="d1a313" style="display: inline-block">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a311" value="0" > 依折麦布 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a311" value="1"> 阿西莫司 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a311" value="4"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a312"  name="d1a312" style="display: inline-block" disabled>
+                                         </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+
+                                            <label class="checkbox-inline col-md-3" style="margin-left: 200px;"><input type="checkbox" name="d1a31" value="4">胆酸螯合剂：</label>
+
+                                            <label for="id_d1a316" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a316"  name="d1a310" style="display: inline-block">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a314" value="0" > 考来烯胺 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a314" value="1" > 考来替泊 </label><br/>
+
+                                            <label class="radio-inline" style="margin-left: 300px;"><input type="radio" name="d1a314" value="2"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a315"  name="d1a315" style="display: inline-block" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="checkbox-inline col-md-1" style="margin-left: 200px;"><input type="checkbox" name="d1a31" value="5">其他</label>
+                                             <input type="text" class="form-group col-md-3" id="id_d1a317"  name="d1a317" style="display: inline-block" disabled>
+                                              <label for="id_d1a318" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a318"  name="d1a318" style="display: inline-block">
+
+                                          </div>
+                                    </div>
+                                     <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:95%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_tiaojiexuezhi">关闭</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label  for="id_d1a40" class="col-md-3 control-label">1.4.控制血压药物：</label>
+                                    <div class="col-md-9" id="id_d1a40">
+                                    <label class="radio-inline"><input type="radio" name="d1a40" value="0"> 是 </label>
+                                    <label class="radio-inline"><input type="radio" name="d1a40" value="1"> 否 </label>
+
+                                    </div>
+                                </div>
+
+                                <div id="kind_d1a40" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 50%">
+                                    <div class="form-group">
+                                        <label  for="id_d1a41" class="col-md-3 control-label">如果“是”，则为：药物</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-md-3 checkbox-inline" style="margin-left: 170px;"><input type="checkbox" name="d1a41" value="0">钙离子拮抗剂CCB</label>
+
+                                            <label for="id_d1a42" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a42"  name="d1a42" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-md-3 checkbox-inline" style="margin-left: 170px;"><input type="checkbox"  name="d1a41" value="1">血管紧张素转换酶抑制剂ACEI</label>
+
+                                            <label for="id_d1a43" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a43"  name="d1a43" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 170px;"><input type="checkbox"  name="d1a41" value="2">血管紧张素Ⅱ受体拮抗剂ARB</label>
+
+                                            <label for="id_d1a44" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a44"  name="d1a44" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 170px;"><input type="checkbox"  name="d1a41" value="3">利尿剂</label>
+                                            <label for="id_d1a45" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a45"  name="d1a45" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 170px;"><input type="checkbox"  name="d1a41" value="4">β受体阻滞剂</label>
+                                            <label for="id_d1a46" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6"class="form-group" id="id_d1a46"  name="d1a46" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 170px;"><input type="checkbox"  name="d1a41" value="5">α受体阻滞剂</label>
+                                            <label for="id_d1a47" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a47"  name="d1a47" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                        <label class="col-md-1 checkbox-inline" style="margin-left: 170px;"><input type="checkbox"  value="6">其他</label>
+                                        <input class="col-md-3" type="text" class="form-group" id="id_d1a48"  name="d1a48" >
+                                            <label for="id_d1a49" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a49"  name="d1a49" >
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:85%">
+                                        <button type="button" class="btn btn-default" id="close_kongzhixueya">关闭</button>
+                                    </div>
+                                </div>
+
+                            <div class="form-group">
+                                    <label   class="col-md-3 control-label">1.5.其他</label>
+                                    <div class="col-md-9" id="id_d1a401">
+                                        <label class="radio-inline"><input type="radio" name="d1a401" value="0"> 是 </label>
+                                        <label class="radio-inline"><input type="radio" name="d1a401" value="1"> 否 </label>
+
+                                    </div>
+                                </div>
+
+                                <div id="kind_d1a401" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 80%">
+                                    <div class="form-group">
+                                        <div class="col-md-12" >
+                                            <label class="col-md-2 control-label">
+                                                <input type="checkbox" name="d1a401_1" value="0">中药：药物
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div id="kind_d1a401_1" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 60%">
+                                        <div class="form-group">
+                                             <div class="col-md-12">
+                                                <input class="col-md-3" type="text" class="form-group" id="id_d1a51"  name="d1a51" style="display: inline-block;margin-left: 115px;">
+                                                 <label for="id_d1a56" class="col-md-2 control-label">剂量(g或mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a56"  name="d1a56">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <input class="col-md-3" type="text" class="form-group" id="id_d1a52"  name="d1a52" style="display: inline-block;margin-left: 115px;">
+                                                    <label for="id_d1a57" class="col-md-2 control-label">剂量(g或mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a57"  name="d1a57" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <div class="col-md-12">
+                                                <input class="col-md-3" type="text" class="form-group" id="id_d1a53"  name="d1a53" style="display: inline-block;margin-left: 115px;">
+                                                    <label for="id_d1a58" class="col-md-2 control-label">剂量(g或mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a58"  name="d1a58" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <div class="col-md-12">
+                                                <input class="col-md-3" type="text" class="form-group" id="id_d1a54"  name="d1a54" style="display: inline-block;margin-left: 115px;">
+                                                    <label for="id_d1a59" class="col-md-2 control-label">剂量(g或mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a59"  name="d1a59" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <div class="col-md-12">
+                                                <input class="col-md-3" type="text" class="form-group" id="id_d1a55"  name="d1a55" style="display: inline-block;margin-left: 115px;">
+                                                    <label for="id_d1a510" class="col-md-2 control-label">剂量(g或mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a510"  name="d1a510" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:80%">
+                                            <button type="button" class="btn btn-default" id="close_zhongyao">关闭</button>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12" >
+                                            <label class="col-md-2 control-label">
+                                                <input type="checkbox" name="d1a401_1" value="1">脑保护：药物
+                                            </label>
+                                        </div>
+                                    </div>
+                                <div id="kind_d1a401_2" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 60%">
+                                    <div class="form-group">
+                                         <div class="col-md-12">
+                                            <input class="col-md-3" type="text" class="form-group" id="id_d1a511"  name="d1a511" style="display: inline-block;margin-left: 115px;">
+                                             <label for="id_d1a513" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a513"  name="d1a513" >
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input class="col-md-3" type="text" class="form-group" id="id_d1a512"  name="d1a512" style="display: inline-block;margin-left: 115px;">
+                                                <label for="id_d1a514" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a514"  name="d1a514" >
+                                        </div>
+                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input class="col-md-3" type="text" class="form-group" id="id_d1a570"  name="d1a570" style="display: inline-block;margin-left: 115px;">
+                                             <label for="id_d1a573" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a573"  name="d1a573" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input class="col-md-3" type="text" class="form-group" id="id_d1a571"  name="d1a571" style="display: inline-block;margin-left: 115px;">
+                                             <label for="id_d1a574" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a574"  name="d1a574" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input class="col-md-3" type="text" class="form-group" id="id_d1a572"  name="d1a572" style="display: inline-block;margin-left: 115px;">
+                                             <label for="id_d1a575" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a575"  name="d1a575" >
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:80%">
+                                        <button type="button" class="btn btn-default" id="close_naobaohu">关闭</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                        <label class="col-md-2 control-label">
+                                        <input type="checkbox" name="d1a401_1" value="2">脱水：药物</label>
+                                    </div>
+                                </div>
+                            <div id="kind_d1a401_3" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 60%">
+                                <div class="form-group">
+                                  <div class="col-md-12" id="id_d1a515"  >
+                                      <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a515" value="0">甘露醇</label>
+                                      <label for="id_d1a516" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a516"  name="d1a516" >
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                      <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a515" value="1">甘油果糖</label>
+                                      <label for="id_d1a517" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a517"  name="d1a517" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a515" value="2">白蛋白</label>
+                                        <label for="id_d1a518" class="col-md-2 control-label">剂量(g/天)：</label>
+                                        <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a518"  name="d1a518" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a515" value="3">七叶皂苷钠</label>
+                                       <label for="id_d1a519" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                       <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d1a519"  name="d1a519" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                        <label class="col-md-1 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a515" value="4">其他</label>
+                                        <input type="text" id="id_d1a520" name="d1a520" class="col-md-2">
+                                        <label for="id_d1a521" class="col-md-3 control-label" style="left: -63px">剂量(g或mg/天)：</label>
+                                        <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group col-md-3" id="id_d1a521"  name="d1a521" style="left:-48px;">
+                                  </div>
+                                </div>
+                                <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:80%">
+                                    <button type="button" class="btn btn-default" id="close_tuoshui">关闭</button>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                        <label class="col-md-2 control-label">
+                                            <input type="checkbox" name="d1a401_1" value="3">扩容：药物</label>
+                                    </div>
+                                </div>
+                            <div id="kind_d1a401_4" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 60%">
+                                <div class="form-group">
+                                    <div class="col-md-12" id="id_d1a522"  >
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a522" value="0">羟乙基淀粉注射液</label>
+                                        <label for="id_d1a523" class="col-md-2 control-label">剂量(g/天)：</label>
+                                        <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a523"  name="d1a523" placeholder="数字形式0000.00" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a522" value="1">低分子右旋糖苷</label>
+                                        <label for="id_d1a524" class="col-md-2 control-label">剂量(ml/天)：</label>
+                                        <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a524"  name="d1a524" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a522" value="2">白蛋白</label>
+                                        <label for="id_d1a525" class="col-md-2 control-label">剂量(g/天)：</label>
+                                        <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a525"  name="d1a525" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                          <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a522" value="3">血浆</label>
+                                          <label for="id_d1a526" class="col-md-2 control-label">剂量(u/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a526"  name="d1a526" >
+                                      </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                          <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a522" value="4">多种氨基酸</label>
+                                          <label for="id_d1a527" class="col-md-2 control-label">剂量(g/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a527"  name="d1a527" >
+                                      </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                          <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a522" value="5">琥珀酸凝胶</label>
+                                          <label for="id_d1a528" class="col-md-2 control-label">剂量(g/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a528"  name="d1a528" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="col-md-1 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a522" value="6">其他</label>
+                                        <input class="col-md-2" type="text" class="form-group" id="id_d1a529"  name="d1a529" style="left:-25px;">
+                                        <label for="id_d1a530" class="col-md-3 control-label" style="left: -63px">剂量(g或mg或u/天)：</label>
+                                        <input type="number" step="0.01" value="0.00" maxlength="7" class="col-md-3 form-group" id="id_d1a530"  name="d1a530" style="left:-48px;">
+                                  </div>
+                                </div>
+
+                                <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:80%">
+                                    <button type="button" class="btn btn-default" id="close_kuorongyaowu">关闭</button>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="col-md-2 control-label">
+                                            <input type="checkbox" name="d1a401_1" value="4">控制血糖：药物</label>
+                                    </div>
+                                </div>
+                            <div id="kind_d1a401_5" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 60%">
+                                <div class="form-group">
+                                      <div class="col-md-12" id="id_d1a531"  style="margin-left: 50px;">
+                                          <label class="checkbox-inline"><input type="checkbox" name="d1a531"  value="0">胰岛素：</label>
+                                      </div>
+                                </div>
+
+                                <div id="kind_d1a401_5_1" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 80%">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                      <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="0">超长效：甘精</label>
+                                      <label for="id_d1a533" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a533"  name="d1a533" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                    <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="1">超长效：地特</label>
+                                      <label for="id_d1a534" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a534"  name="d1a534" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                    <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="2">长效：精蛋白</label>
+                                      <label for="id_d1a535" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a535"  name="d1a535" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                    <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="3">中效：低精蛋白锌胰岛素</label>
+                                      <label for="id_d1a536" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a536"  name="d1a536" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                      <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="4">短效：普通胰岛素</label>
+                                      <label for="id_d1a537" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a537"  name="d1a537" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                    <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="5">短效：正规胰岛素</label>
+                                      <label for="id_d1a538" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a538"  name="d1a538" >
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                    <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="6">超短效：门冬胰岛素</label>
+                                      <label for="id_d1a539" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a539"  name="d1a539" >
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                    <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="7">超短效：赖脯胰岛素</label>
+                                      <label for="id_d1a540" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a540"  name="d1a540" >
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                    <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="8">预混：30R</label>
+                                      <label for="id_d1a541" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a541"  name="d1a541" >
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                    <label class="col-md-3 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="9">预混：50R</label>
+                                      <label for="id_d1a542" class="col-md-3 control-label">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a542"  name="d1a542" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                       <label class="col-md-2 checkbox-inline" style="margin-left: 100px;"><input type="checkbox" name="d1a532" value="8">其他</label>
+                                      <input type="text" class="col-md-2 form-group" id="id_d1a543"  name="d1a543" style="left: -50px;">
+                                      <label for="id_d1a544" class="col-md-3 control-label" style="left: -21px;">剂量(u/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="col-md-3 form-group" id="id_d1a544"  name="d1a544" >
+                                    </div>
+
+                                </div>
+                                <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:70%">
+                                    <button type="button" class="btn btn-default" id="close_yidaoshu">关闭</button>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-left: 50px;">
+                                    <label class="col-md-3 checkbox-inline"><input type="checkbox" name="d1a531" value="1">双胍类：</label>
+                                    </div>
+                                </div>
+
+                            <div id="kind_d1a401_5_2" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label for="id_d1a547" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                        <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a547"  name="d1a547" style="left: 50px;">
+                                        <label class="col-md-3 radio-inline" style="left: 50px;"><input type="radio" name="d1a545" value="0" > 二甲双胍 </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="col-md-3 radio-inline" style="left: 50px;">
+                                            <input type="radio" name="d1a545" value="1"> 其他
+                                        </label>
+                                        <input type="text" class="col-md-3 form-group" id="id_d1a546"  name="d1a546" style="display: inline-block">
+                                    </div>
+                                </div>
+                                <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:70%">
+                                    <button type="button" class="btn btn-default" id="close_shuanghulei">关闭</button>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-left: 50px;">
+                                    <label class="col-md-3 checkbox-inline"><input type="checkbox" name="d1a531" value="2">磺酰脲类：</label>
+                                    </div>
+                                </div>
+                                <div id="kind_d1a401_5_3" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label for="id_d1a550" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a550"  name="d1a550" style="display: inline-block"><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a548" value="0" > 格列本脲 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a548" value="1" > 格列吡嗪 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a548" value="2" > 格列喹酮 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a548" value="3" > 格列齐特 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a548" value="4" > 格列美脲 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a548" value="5"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a549"  name="d1a549" style="display:inline-block;margin-left: 100px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:70%">
+                                        <button type="button" class="btn btn-default" id="close_huangxianniao">关闭</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-left: 50px;">
+                                      <label class="col-md-3 checkbox-inline"><input type="checkbox" name="d1a531" value="3">α葡萄糖苷酶抑制剂：</label>
+                                    </div>
+                                </div>
+                                <div id="kind_d1a401_5_4" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label for="id_d1a553" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a553"  name="d1a553" style="display: inline-block"><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a551" value="0" > 阿卡波糖 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a551" value="1" > 伏格列波糖 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a551" value="2"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a552"  name="d1a552" style="display: inline-block;margin-left: 100px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:70%">
+                                        <button type="button" class="btn btn-default" id="close_butaotang">关闭</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-left: 50px;">
+                                      <label class="col-md-3 checkbox-inline"><input type="checkbox" name="d1a531" value="4">噻唑烷二酮类：</label>
+                                    </div>
+                                </div>
+                                <div id="kind_d1a401_5_5" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label for="id_d1a556" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a556"  name="d1a556" style="display: inline-block"><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a554" value="0" > 罗格列酮 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a554" value="1" > 吡格列酮 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a554" value="2"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a555"  name="d1a555" style="display: inline-block;margin-left: 100px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:70%">
+                                        <button type="button" class="btn btn-default" id="close_shaichuowan">关闭</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-left: 50px;">
+                                      <label class="checkbox-inline"><input type="checkbox" name="d1a531" value="5">格列奈类：</label>
+                                    </div>
+                                </div>
+                                <div id="kind_d1a401_5_6" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label for="id_d1a559" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a559"  name="d1a559" style="display: inline-block"><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a557" value="0" > 瑞格列奈 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a557" value="1" > 那格列奈 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a557" value="2"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a558"  name="d1a558" style="display: inline-block;margin-left: 100px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:70%">
+                                        <button type="button" class="btn btn-default" id="close_gelinai">关闭</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-left: 50px;">
+                                      <label class="col-md-3 checkbox-inline"><input type="checkbox" name="d1a531" value="6">胰高糖素样多肽-1受体激动剂：</label>
+                                    </div>
+                                </div>
+                                <div id="kind_d1a401_5_7" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label for="id_d1a562" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a562"  name="d1a562" style="display: inline-block"><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a560" value="0" > 艾塞那肽 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a560" value="1" > 利拉鲁肽 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a560" value="2"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a561"  name="d1a561" style="display: inline-block;margin-left: 100px;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:70%">
+                                        <button type="button" class="btn btn-default" id="close_yigaotang">关闭</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-left: 50px;">
+                                      <label class="col-md-3 checkbox-inline"><input type="checkbox" name="d1a531" value="7">二肽基肽酶-4抑制剂：</label>
+                                    </div>
+                                </div>
+                                <div id="kind_d1a401_5_8" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label for="id_d1a565" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a565"  name="d1a565" style="display: inline-block"><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a563" value="0" > 西格列汀 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a563" value="1" > 维格列汀 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a563" value="2" > 沙格列汀 </label><br/>
+                                            <label class="radio-inline" style="left: 70px;"><input type="radio" name="d1a563" value="3"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d1a564"  name="d1a564" style="display: inline-block;margin-left: 100px;">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:85%;left:70%">
+                                        <button type="button" class="btn btn-default" id="close_ertaiji">关闭</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-left: 50px;">
+                                      <label class="col-md-2 checkbox-inline"><input type="checkbox" name="d1a531" value="8">其他</label>
+
+                                      <input type="text" class="form-group col-md-3" id="id_d1a566"  name="d1a566">
+                                      <label for="id_d1a567" class="col-md-2 control-label">剂量(mg/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d1a567"  name="d1a567" >
+                                    </div>
+                                </div>
+                                <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:75%;left:80%">
+                                    <button type="button" class="btn btn-default" id="close_kongzhixuetang">关闭</button>
+                                </div>
+                                </div>
+
+                                <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:75%;left:80%">
+                                    <button type="button" class="btn btn-default" id="close_qita">关闭</button>
+                                </div>
+
+                            </div>
+
+                            </div>
+
+                                <div class="form-group">
+                                    <label for="id_d1a6" class="col-md-3 control-label">1.6外科治疗：</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-group" id="id_d1a6" required name="d1a6" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="id_d1a7" class="col-md-3 control-label">1.7介入治疗：</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-group" id="id_d1a7" required name="d1a7" >
+                                    </div>
+                                </div>
+
+                                <h3>2.出血性脑卒中</h3>
+
+                                <div class="form-group">
+                                    <label  for="id_d2a10" class="col-md-3 control-label">2.1脱水药物：</label>
+                                    <div class="col-md-9" id="id_d2a10">
+                                        <label class="radio-inline"><input type="radio" name="d2a10" value="0"> 是 </label>
+                                        <label class="radio-inline"><input type="radio" name="d2a10" value="1"> 否 </label>
+                                    </div>
+                                </div>
+
+                                <div id="kind_d2a10" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                    <label for="id_d2a11">如果“是”，则为：药物</label><br/>
+                                    <div class="form-group">
+                                        <div class="col-md-12" id="id_d2a11"  >
+                                            <label class="checkbox-inline col-md-2" style="margin-left: 50px;"><input type="checkbox" name="d2a11" value="0">甘露醇</label>
+                                            <label for="id_d2a12" class="col-md-3 control-label" style="margin-left: 10px;">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a12"  name="d2a12">
+                                        </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="checkbox-inline col-md-2" style="margin-left: 63px;"><input type="checkbox" name="d2a11" value="1">甘油果糖</label>
+                                            <label for="id_d2a13" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a13"  name="d2a13" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                        <label class="checkbox-inline col-md-2" style="margin-left: 63px;"><input type="checkbox" name="d2a11" value="2">白蛋白</label>
+                                          <label for="id_d2a14" class="col-md-3 control-label">剂量(g/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a14"  name="d2a14" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                          <label class="checkbox-inline col-md-2" style="margin-left: 63px;"><input type="checkbox" name="d2a11" value="3">七叶皂苷钠</label>
+                                          <label for="id_d2a15" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a15"  name="d2a15" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                          <label class="checkbox-inline col-md-1" style="margin-left: 63px;"><input type="checkbox" name="d2a11" value="4">其他</label>
+                                          <input type="text" class="form-group col-md-2" id="id_d2a16"  name="d2a16" >
+                                          <label for="id_d2a17" class="col-md-2 control-label" style="margin-left: 30px;">剂量(g或mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a17"  name="d2a17" >
+                                        </div>
+                                  </div>
+                                </div>
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:75%;left:80%">
+                                        <button type="button" class="btn btn-default" id="close_tuoshuiyaowu">关闭</button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label  for="id_d2a21" class="col-md-3 control-label">2.2控制血压药物：</label>
+                                    <div class="col-md-9" id="id_d2a21">
+                                    <label class="radio-inline"><input type="radio" name="d2a21" value="0"> 是 </label>
+                                    <label class="radio-inline"><input type="radio" name="d2a21" value="1"> 否 </label>
+
+                                    </div>
+                                </div>
+
+
+                                <div id="kind_d2a21" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 40%">
+                                    <label  for="id_d2a21">如果“是”，则为：药物</label>
+                                    <div class="form-group">
+                                        <div class="col-md-12"  id="id_d2a21" >
+                                          <label class="col-md-3 checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="d2a21" value="0">钙离子拮抗剂CCB</label>
+                                          <label for="id_d2a22" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a22"  name="d2a22" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-md-3 checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="d2a21" value="1">血管紧张素转换酶抑制剂ACEI</label>
+                                            <label for="id_d2a23" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a23"  name="d2a23" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-md-3 checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="d2a21" value="2">血管紧张素Ⅱ受体拮抗剂ARB</label>
+                                            <label for="id_d2a24" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a24"  name="d2a24" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                         <div class="col-md-12">
+                                            <label class="col-md-3 checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="d2a21" value="3">利尿剂</label>
+                                            <label for="id_d2a25" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                           <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a25"  name="d2a25" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-md-3 checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="d2a21" value="4">β受体阻滞剂</label>
+                                            <label for="id_d2a26" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a26"  name="d2a26" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-md-3 checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="d2a21" value="5">α受体阻滞剂</label>
+                                            <label for="id_d2a27" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a27"  name="d2a27" >
+                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="col-md-2 checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="d2a21" value="6">其他</label>
+                                            <input type="text" class="col-md-2 form-group" id="id_d2a28"  name="d2a28" >
+                                            <label for="id_d2a29" class="col-md-2 control-label" style="margin-left: 30px;">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="6" class="form-group" id="id_d2a29"  name="d2a29" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:75%;left:80%">
+                                        <button type="button" class="btn btn-default" id="close_kongzhixueya2">关闭</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label  class="col-md-3 control-label">2.3其他</label>
+                                        <div class="col-md-9" id="id_d2a212">
+                                            <label class="radio-inline"><input type="radio" name="d2a212" value="0"> 是 </label>
+                                            <label class="radio-inline"><input type="radio" name="d2a212" value="1"> 否 </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="kind_d2a212_2" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 70%">
+                                    <div class="form-group">
+                                        <div class="col-md-12" >
+                                            <label  class="col-md-2 control-label">
+                                                <input type="checkbox" name="d1a401_2_2" value="0">中药：药物-2
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div id="kind_d2a212_2_2" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 80%">
+                                        <div class="form-group">
+                                             <div class="col-md-12">
+                                                 <input type="text" class="col-md-3 form-group" id="id_d2a31"  name="d2a31" style="left: 50px;">
+                                                 <label for="id_d2a36" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                                <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a36"  name="d2a36" >
+                                             </div>
+                                            <div class="col-md-12">
+                                                <input type="text" class="col-md-3 form-group" id="id_d2a32"  name="d2a32" style="left: 50px;">
+                                                <label for="id_d2a37" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a37"  name="d2a37" >
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="text" class="col-md-3 form-group" id="id_d2a33"  name="d2a33" style="left: 50px;">
+                                                <label for="id_d2a38" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                                <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a38"  name="d2a38" >
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="text" class="col-md-3 form-group" id="id_d2a34"  name="d2a34" style="left: 50px;">
+                                                <label for="id_d2a39" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                                <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a39"  name="d2a39" >
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="text" class="col-md-3 form-group" id="id_d2a35"  name="d2a35" style="left: 50px;">
+                                                <label for="id_d2a310" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                                <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a310"  name="d2a310" >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:75%;left:80%">
+                                            <button type="button" class="btn btn-default" id="close_zhongyao2">关闭</button>
+                                        </div>
+                                    </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                        <label   class="col-md-2 control-label">
+                                            <input type="checkbox" name="d1a401_2_2" value="1">脑保护：药物
+                                        </label>
+                                    </div>
+
+                                    <div id="kind_d2a212_2_3" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 55%">
+                                         <div class="col-md-12">
+                                             <input type="text" class="col-md-3 form-group" id="id_d2a311"  name="d2a311" style="left: 50px;">
+                                             <label for="id_d2a313" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                             <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a313"  name="d1a513" >
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input type="text" class="col-md-3 form-group" id="id_d2a312"  name="d2a312" style="left: 50px;">
+                                            <label for="id_d2a314" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a314"  name="d2a314" >
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input type="text" class="col-md-3 form-group" id="id_d2a315"  name="d2a315" style="left: 50px;">
+                                             <label for="id_d2a318" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a318"  name="d1a518" >
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input type="text" class="col-md-3 form-group" id="id_d2a316"  name="d2a316" style="left: 50px;">
+                                             <label for="id_d2a319" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a319"  name="d1a519" >
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input type="text" class="col-md-3 form-group" id="id_d2a317"  name="d2a311" style="left: 50px;">
+                                             <label for="id_d2a3110" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                            <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a3110"  name="d1a5110" >
+                                        </div>
+
+                                        <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:75%;left:80%">
+                                            <button type="button" class="btn btn-default" id="close_naobaohu2">关闭</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                        <label class="col-md-2 control-label">
+                                            <input type="checkbox" name="d1a401_2_2" value="2">控制血糖：药物
+                                        </label>
+                                    </div>
+
+
+                                    <div class="col-md-9" id="id_d2a331" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 80%">
+
+                                        <div class="form-group">
+                                            <div class="col-md-12" >
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="d2a331" value="0">胰岛素：
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div id="id_d2a331_1" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 90%">
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="0">超长效：甘精</label>
+                                                    <label for="id_d2a333" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                    <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a333"  name="d2a333" >
+                                                </div>
+                                            </div>
+
+                                             <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="1">超长效：地特</label>
+                                                    <label for="id_d2a334" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                    <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a334"  name="d2a334" >
+                                                </div>
+                                             </div>
+
+
+                                             <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="2">长效：精蛋白</label>
+                                                    <label for="id_d2a335" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                   <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a335"  name="d2a335" >
+                                                </div>
+                                             </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="3">中效：低精蛋白锌胰岛素</label>
+                                                    <label for="id_d2a336" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                    <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a336"  name="d2a336" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="4">短效：普通胰岛素</label>
+                                                    <label for="id_d2a337" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                    <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a337"  name="d2a337" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="5">短效：正规胰岛素</label>
+                                                    <label for="id_d2a338" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                    <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a338"  name="d2a338" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="6">超短效：门冬胰岛素</label>
+                                                    <label for="id_d2a339" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                    <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a339"  name="d2a339" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="7">超短效：赖脯胰岛素</label>
+                                                    <label for="id_d2a340" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                    <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a340"  name="d2a340" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                    <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="8">预混：30R</label>
+                                                      <label for="id_d2a341" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a341"  name="d2a341" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                      <label class="checkbox-inline col-md-3" style="left: 50px;"><input type="checkbox" name="d2a332" value="9">预混：50R</label>
+                                                      <label for="id_d2a342" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a342"  name="d2a342" >
+                                                  </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-12" >
+                                                   <label class="checkbox-inline col-md-2" style="left: 50px;"><input type="checkbox" name="d2a332" value="8">其他</label>
+                                                  <input type="text" class="form-group col-md-2" id="id_d2a343"  name="d2a343" >
+                                                  <label for="id_d2a344" class="col-md-3 control-label">剂量(u/天)：</label>
+                                                  <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a344"  name="d2a344" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:90%;left:80%">
+                                                <button type="button" class="btn btn-default" id="close_yidaoshu2">关闭</button>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-md-12" >
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="d2a331" value="1">双胍类：
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div id="id_d2a331_2" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                              <label for="id_d2a347" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a347"  name="d2a347" >
+                                              <br/>
+                                              <label class="radio-inline"><input type="radio" name="d2a345" value="0" > 二甲双胍 </label><br/>
+                                              <label class="radio-inline"><input type="radio" name="d2a345" value="1"> 其他 </label>
+                                              <input type="text" class="form-group" id="id_d2a346"  name="d2a346" style="display: inline">
+
+                                            <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:50%;left:80%">
+                                                <button type="button" class="btn btn-default" id="close_shuanhulei2">关闭</button>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-md-12" >
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="d2a331" value="2">磺酰脲类：
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div id="id_d2a331_3" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 50%">
+                                            <div class="col-md-12">
+                                                  <label for="id_d2a350" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                                  <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a350"  name="d2a350" >
+                                                  <br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a348" value="0" > 格列本脲 </label><br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a348" value="1" > 格列吡嗪 </label><br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a348" value="2" > 格列喹酮 </label><br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a348" value="3" > 格列齐特 </label><br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a348" value="4" > 格列美脲 </label><br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a348" value="5"> 其他 </label>
+                                                <input type="text" class="form-group" id="id_d2a349"  name="d2a349" style="display:inline-block;margin-left: 100px;">
+
+                                                <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:100%;left:80%">
+                                                    <button type="button" class="btn btn-default" id="close_huangxiniao2">关闭</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-md-12" >
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="d2a331" value="3">α葡萄糖苷酶抑制剂：
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                        <div id="id_d2a331_4" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 50%">
+                                              <label for="id_d2a353" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a353"  name="d2a353" >
+                                              <br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a351" value="0" > 阿卡波糖 </label><br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a351" value="1" > 伏格列波糖 </label><br/>
+                                                <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a351" value="2"> 其他 </label>
+                                                <input type="text" class="form-group" id="id_d2a352"  name="d2a352" style="display:inline-block;margin-left: 100px;">
+
+                                                <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:80%">
+                                                    <button type="button" class="btn btn-default" id="close_putaotang2">关闭</button>
+                                                </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-md-12" >
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="d2a331" value="4">噻唑烷二酮类：
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                      <div id="id_d2a331_5" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 50%">
+                                          <label for="id_d2a356" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a356"  name="d2a356" >
+                                          <br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a354" value="0" > 罗格列酮 </label><br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a354" value="1" > 吡格列酮 </label><br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a354" value="2"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d2a355"  name="d2a355" style="display:inline-block;margin-left: 100px;">
+
+                                          <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:80%">
+                                                <button type="button" class="btn btn-default" id="close_shaichuowan2">关闭</button>
+                                            </div>
+                                      </div>
+                                      <br/>
+
+                                        <div class="form-group">
+                                            <div class="col-md-12" >
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="d2a331" value="5">格列奈类：
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                      <div id="id_d2a331_6" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 50%">
+                                          <label for="id_d2a359" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                          <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a359"  name="d2a359" >
+                                          <br/>
+                                        <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a357" value="0" > 瑞格列奈 </label><br/>
+                                        <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a357" value="1" > 那格列奈 </label><br/>
+                                        <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a357" value="2"> 其他 </label>
+                                        <input type="text" class="form-group" id="id_d2a358"  name="d2a358" style="display:inline-block;margin-left: 100px;">
+
+                                          <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:80%">
+                                                <button type="button" class="btn btn-default" id="close_gelienai2">关闭</button>
+                                            </div>
+                                      </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-12" >
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="d2a331" value="6">胰高糖素样多肽-1受体激动剂：
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div id="id_d2a331_7" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 50%">
+                                              <label for="id_d2a362" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a362"  name="d2a362" >
+                                              <br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a360" value="0" > 艾塞那肽 </label><br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a360" value="1" > 利拉鲁肽 </label><br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a360" value="2"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d2a361"  name="d2a361" style="display:inline;margin-left: 100px;">
+
+                                            <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:80%">
+                                                <button type="button" class="btn btn-default" id="close_yigaotang2">关闭</button>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-md-12" >
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" name="d2a331" value="7">二肽基肽酶-4抑制剂：
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                        <div id="id_d2a331_8" style="display: none;position: absolute;top:10%;left: 10%;margin: auto;z-index: 999;width: 80%;height: 50%">
+                                              <label for="id_d2a365" class="col-md-3 control-label">剂量(mg/天)：</label>
+                                              <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a365"  name="d2a365" >
+                                              <br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a363" value="0" > 西格列汀 </label><br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a363" value="1" > 维格列汀 </label><br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a363" value="2" > 沙格列汀 </label><br/>
+                                            <label class="radio-inline" style="left:60px;"><input type="radio" name="d2a363" value="3"> 其他 </label>
+                                            <input type="text" class="form-group" id="id_d2a364"  name="d2a364" style="display:inline-block;margin-left: 100px;">
+
+                                            <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:80%">
+                                                <button type="button" class="btn btn-default" id="close_ertaiji2">关闭</button>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <label class="checkbox-inline"><input type="checkbox" name="d2a331" value="8">其他</label>
+
+                                      <input type="text" class="form-group" id="id_d2a366"  name="d1a566" style="display: inline">
+                                      <label for="id_d2a367" style="margin-left: 50px;">剂量(mg/天)：</label>
+                                      <input type="number" step="0.01" value="0.00" maxlength="7" class="form-group" id="id_d2a367"  name="d2a367" style="display: inline">
+
+                                        <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:60%;left:80%">
+                                                <button type="button" class="btn btn-default" id="close_kongzhixuetang2">关闭</button>
+                                            </div>
+                                  </div>
+
+                                    <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:60%;left:80%">
+                                                <button type="button" class="btn btn-default" id="close_qita2">关闭</button>
+                                            </div>
+                                </div>
+                            </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="id_d2a4" class="col-md-3 control-label">2.4外科治疗：</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-group" id="id_d2a4" required name="d2a4" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="id_d2a5" class="col-md-3 control-label">2.5介入治疗：</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-group" id="id_d2a5" required name="d2a5" >
+                                    </div>
+                                </div>
+
+
+                                <h3>3危险因素</h3>
+
+                                <div class="form-group">
+                                    <div class="col-md-12" >
+                                        <label class="checkbox-inline" style="margin-left: 200px;">
+                                            <input type="checkbox" name="d2a331_1_1" value="0">危险因素：
+                                        </label>
+                                    </div>
+                                </div>
+
+                            <div id="id_d2a331_8_1" style="display: none;position: absolute;top:20%;left: 15%;margin: auto;z-index: 999;width: 80%;height: 30%">
+                                 <div class="form-group">
+                                      <div class="col-md-9" id="id_e1"  >
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="0">吸烟</label>
+                                          <br/>
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="1">饮酒</label>
+                                           <br/>
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="2">肥胖</label>
+                                           <br/>
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="3">糖尿病</label>
+                                           <br/>
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="4">高血压</label>
+                                           <br/>
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="5">心脏病</label>
+                                           <br/>
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="6">脂代谢紊乱</label>
+                                           <br/>
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="7">既往脑血管病病史</label>
+                                           <br/>
+                                          <label class="checkbox-inline" style="margin-left: 50px;"><input type="checkbox" name="e1" value="8">脑血管病家族史</label>
+                                      </div>
+                                </div>
+
+                                 <div class="form-group" align="right" style="margin-right: 30px;position:absolute; top:80%;left:80%">
+                                    <button type="button" class="btn btn-default" id="close_weixiayingshu">关闭</button>
+                                </div>
+                            </div>
+
+
+                            <h3>4住院1周内病情变化</h3>
+
+                            <div class="form-group">
+
+                                <label  for="id_f1" class="col-md-3 control-label">住院1周内病情变化：</label>
+
+                                <div class="col-md-9">
+
+                                <select class="form-group" id="id_f1"   name="f1">
+                                    <option>好转</option>
+                                    <option>进行性加重</option>
+                                    <option>无变化</option>
+                                </select>
+                                </div>
+                            </div>
+
+                            <h3>5出院情况</h3>
+
+                            <div class="form-group">
+
+                                <label  for="id_g1" class="col-md-3 control-label">出院情况：</label>
+                                <div class="col-md-9">
+                                <select class="form-group" id="id_g1"   name="g1">
+                                    <option>好转</option>
+                                    <option>治愈</option>
+                                    <option>死亡</option>
+                                    <option>未愈</option>
+                                    <option>其他</option>
+                                </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_g2" class="col-md-3 control-label">NHISS评分：</label>
+
+                                    <input type="text" class="form-group" id="id_g2"   name="g2" autofocus>
+
+                            </div>
+
+
+                            <h3>6出院诊断</h3>
+                            <div class="form-group">
+                                  <label for="id_h1" style="margin-left: 230px;">出院诊断：</label><br/>
+                                  <div class="col-md-12" id="id_h1">
+                                      <label class="checkbox-inline" style="margin-left: 300px;"><input type="checkbox" name="h1" value="0">TIA  </label>
+                                  </div>
+                                  <div class="col-md-12">
+                                      <label class="checkbox-inline col-md-1" style="margin-left: 300px;"><input type="checkbox" name="h1" value="1">脑梗死</label>
+                                      <label class="checkbox-inline col-md-1"><input type="checkbox" name="h2" value="0">脑血栓</label>
+
+                                      <label for="id_h3" class="col-md-1 control-label">部位：</label>
+                                      <input type="text" class="col-md-3 form-group" id="id_h3"  name="h3" style="display: inline">
+                                  </div>
+                                  <div class="col-md-12">
+                                       <label class="checkbox-inline col-md-1" style="margin-left: 300px;"><input type="checkbox" name="h2" value="1">脑栓塞</label>
+                                      <label class="checkbox-inline col-md-2" ><input type="checkbox" name="h1" value="2">蛛网膜下腔出血</label>
+                                      <label class="checkbox-inline col-md-1"><input type="checkbox" name="h1" value="3">脑出血</label>
+                                      <label for="id_h4" class="col-md-1 control-label">部位：</label>
+                                      <input type="text" class="col-md-3 form-group" id="id_h4"  name="h4" style="display: inline">
+                                  </div>
+                            </div>
+
+
+                            <h3>7住院时间</h3>
+                            <div class="form-group">
+                                <label for="id_i1" class="col-md-3 control-label">住院时间（天）：</label>
+                                <div class="col-md-9">
+                                    <input type="number" maxlength="4" class="form-group"   name="i1" id="id_i1">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="id_i2" class="col-md-3 control-label">住院期间总花费（元）：</label>
+                                <div class="col-md-9">
+                                    <input type="number" step="0.01" maxlength="12" class="form-group"   name="i2" id="id_i2">
+                                </div>
+                             </div>
+
+
+                            <div class="form-group">
+                                <label for="id_i3" class="col-md-3 control-label">其中药品花费（元）：</label>
+                                <div class="col-md-9">
+                                    <input type="number" step="0.01" maxlength="12" class="form-group"   name="i3" id="id_i3">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_i4" class="col-md-3 control-label">辅助检查花费（元）：</label>
+                                <div class="col-md-9">
+                                    <input type="number" step="0.01" maxlength="12" class="form-group"   name="i4" id="id_i4">
+                                </div>
+                            </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block custom_js %}
+    <script src="/static/plugins/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script src="/static/plugins/bootstrap-table-develop/dist/bootstrap-table.min.js"></script>
+    <script src="/static/plugins/bootstrap-table-develop/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/static/js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/static/js/content.min.js?v=1.0.1"></script>
+    <script src="/static/js/plugins/staps/jquery.steps.min.js"></script>
+    <script src="/static/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="/static/js/plugins/validate/messages_zh.min.js"></script>
+    <script>
+        $(document).ready(function(){$("#wizard").steps();$("#form").steps({bodyTag:"fieldset",onStepChanging:function(event,currentIndex,newIndex){if(currentIndex>newIndex){return true}if(newIndex===3&&Number($("#age").val())<18){return false}var form=$(this);if(currentIndex<newIndex){$(".body:eq("+newIndex+") label.error",form).remove();$(".body:eq("+newIndex+") .error",form).removeClass("error")}form.validate().settings.ignore=":disabled,:hidden";return form.valid()},onStepChanged:function(event,currentIndex,priorIndex){if(currentIndex===2&&Number($("#age").val())>=18){$(this).steps("next")}if(currentIndex===2&&priorIndex===3){$(this).steps("previous")}},onFinishing:function(event,currentIndex){var form=$(this);form.validate().settings.ignore=":disabled";return form.valid()},onFinished:function(event,currentIndex){var form=$(this);/*form.submit()*/}}).validate({errorPlacement:function(error,element){element.before(error)},rules:{confirm:{equalTo:"#password"}}})});
+    </script>
+	<script type="text/javascript" src="/static/js/citydata.min.js"></script>
+	<script type="text/javascript" src="/static/js/cityPicker-1.1.5.js"></script>
+    <script type="text/javascript" src="/static/js/add_person_info.js?v=1.1"></script>
+    <script type="text/javascript">
+		$(function () {
+
+			//模拟城市-无联动/无搜索
+			var selector = $('#city-picker-selector').cityPicker({
+				dataJson: cityData,
+				renderMode: true,
+				search: false,
+				autoSelected: false,
+				onForbid: function() {
+					console.log(this)
+				}
+			});
+
+			// 省份选择的回调
+			$('#city-picker-selector').on('choose-province.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			// 城市选择的回调
+			$('#city-picker-selector').on('choose-city.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			// 城市选择的回调
+			$('#city-picker-selector').on('choose-district.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			//设置城市
+			selector.setCityVal([{
+				'id': '110000',
+				'name': '北京市'
+			}, {
+				'id': '110100',
+				'name': '北京市'
+			}, {
+				'id': '110108',
+				'name': '海淀区'
+			}]);
+
+			// 获取值
+			console.log(JSON.stringify(selector.getCityVal()));
+
+			//模拟城市-联动/搜索/键盘操作
+			$('#city-picker-search').cityPicker({
+				dataJson: cityData,
+				renderMode: true,
+				search: true,
+				autoSelected: true,
+				keyboard: true
+			});
+
+			// 省份选择的回调
+			$('#city-picker-search').on('choose-province.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			// 城市选择的回调
+			$('#city-picker-search').on('choose-city.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			// 城市选择的回调
+			$('#city-picker-search').on('choose-district.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			//原生城市-联动
+			var select = $('.city-picker-select').cityPicker({
+				dataJson: cityData,
+				renderMode: false,
+				autoSelected: true
+			});
+
+			//设置城市
+			select.setCityVal([{
+				'id': '140000',
+				'name': '山西省'
+			}, {
+				'id': '140100',
+				'name': '太原市'
+			}, {
+				'id': '140105',
+				'name': '小店区'
+			}]);
+
+			console.log(select.getCityVal())
+
+		});
+	</script>
+    <script type="text/javascript">
+		$(function () {
+
+			//模拟城市-无联动/无搜索
+			var selector = $('#city-picker-selector-1').cityPicker({
+				dataJson: cityData,
+				renderMode: true,
+				search: false,
+				autoSelected: false,
+				onForbid: function() {
+					console.log(this)
+				}
+			});
+
+			// 省份选择的回调
+			$('#city-picker-selector-1').on('choose-province.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			// 城市选择的回调
+			$('#city-picker-selector-1').on('choose-city.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			// 城市选择的回调
+			$('#city-picker-selector-1').on('choose-district.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			//设置城市
+			selector.setCityVal([{
+				'id': '110000',
+				'name': '北京市'
+			}, {
+				'id': '110100',
+				'name': '北京市'
+			}, {
+				'id': '110108',
+				'name': '海淀区'
+			}]);
+
+			// 获取值
+			console.log(JSON.stringify(selector.getCityVal()));
+
+			//模拟城市-联动/搜索/键盘操作
+			$('#city-picker-search-1').cityPicker({
+				dataJson: cityData,
+				renderMode: true,
+				search: true,
+				autoSelected: true,
+				keyboard: true
+			});
+
+			// 省份选择的回调
+			$('#city-picker-search-1').on('choose-province.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			// 城市选择的回调
+			$('#city-picker-search-1').on('choose-city.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			// 城市选择的回调
+			$('#city-picker-search-1').on('choose-district.citypicker', function(event, tagert, values) {
+				console.log(values);
+			});
+
+			//原生城市-联动
+			var select = $('.city-picker-select-1').cityPicker({
+				dataJson: cityData,
+				renderMode: false,
+				autoSelected: true
+			});
+
+			//设置城市
+			select.setCityVal([{
+				'id': '140000',
+				'name': '山西省'
+			}, {
+				'id': '140100',
+				'name': '太原市'
+			}, {
+				'id': '140105',
+				'name': '小店区'
+			}]);
+
+			console.log(select.getCityVal())
+
+		});
+	</script>
+    <script type="text/javascript">
+        $(function () {
+            $('a[href="#finish"]').on('click', function (e) {
+                //console.log('test');
+                e.preventDefault();
+
+                var formData = {};
+                $("#form").serializeArray().map(function (x) { formData[x.name] = x.value });
+
+                var city_picker_select=[];
+                city_picker_select.push($('.city-picker-select [name="userProvinceId"] option:selected').text());
+                city_picker_select.push($('.city-picker-select [name="userCityId"] option:selected').text());
+                city_picker_select.push($('.city-picker-select [name="userDistrictId"] option:selected').text());
+
+                var city_picker_select_1=[];
+                city_picker_select_1.push($('.city-picker-select-1 [name="userProvinceId"] option:selected').text());
+                city_picker_select_1.push($('.city-picker-select-1 [name="userCityId"] option:selected').text());
+                city_picker_select_1.push($('.city-picker-select-1 [name="userDistrictId"] option:selected').text());
+
+                formData.city_picker_select=city_picker_select;
+                formData.city_picker_select_1=city_picker_select_1;
+
+                var b5_list=[];  // 入院诊断
+                $(":checked[name=b5]").each(function(i, x){ b5_list[i]=x.value });
+
+                var b51_list=[];    // 确诊依据
+                $(":checked[name=b51]").each(function(i, x){ b51_list[i]=x.value });
+
+                var b5a112_list=[];     // 如果选“否”，则原因为
+                $(":checked[name=b5a112]").each(function(i, x){ b5a112_list[i]=x.value });
+
+                formData.b5_list=b5_list;
+                formData.b51_list=b51_list;
+                formData.b5a112_list=b5a112_list;
+
+
+                var c2_list=[];     // 体征
+                $(":checked[name=c2]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.c2_list=c2_list;
+
+                var c11_list=[];    // CT
+                $(":checked[name=c11]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.c11_list=c11_list;
+
+                var c12a2_list=[];  // 部位
+                $(":checked[name=c12a2]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.c12a2_list=c12a2_list;
+
+
+                var d1a31_list=[];  //如果“是”，则为：药物，如：他汀类
+                $(":checked[name=d1a34]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.d1a31_list=d1a31_list;
+
+
+                var d1a41_list=[];  //如果“是”，则为：药物，如：钙离子拮抗剂CCB
+                $(":checked[name=d1a41]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.d1a41_list=d1a41_list;
+
+
+                var d1a515_list=[];     // 脱水：药物
+                $(":checked[name=d1a515]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.d1a515_list=d1a515_list;
+
+
+                var e1_list=[];     // 危险因素
+                $(":checked[name=e1]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.e1_list=e1_list;
+
+                var h1_list=[];     // 出院诊断
+                $(":checked[name=h1]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.h1_list=h1_list;
+
+                var h2_list=[];     // 脑血栓
+                $(":checked[name=h2]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.h2_list=h2_list;
+
+
+                var d2a21_list=[];      //钙离子拮抗剂CCB
+                $(":checked[name=d2a21]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.d2a21_list=d2a21_list;
+
+
+                var d1a522_list=[];     // 羟乙基淀粉注射液
+                $(":checked[name=d1a522]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.d1a522_list=d1a522_list;
+
+
+                var d2a11_list=[];      // 甘露醇
+                $(":checked[name=d2a11]").each(function(i, x){ b5a112_list[i]=x.value });
+                formData.d2a11_list=d2a11_list;
+
+
+                $.ajax({
+                    type: "post",
+                    url: "/add_book/",
+                    data: JSON.stringify(formData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    async:false,
+                    success: function(msg){
+                        if(msg.state=="success"){
+                            alert('添加信息成功!');
+                            window.location.href="/backend/";
+                        }else{
+                            alert('添加信息失败!');
+
+                        }
+                    }
+                })
+            });
+
+            $('a[href="#cancel"]').click(function (){
+                window.location.href="/";
+            });
+        });
+
+    </script>
+{% endblock %}
+
+
